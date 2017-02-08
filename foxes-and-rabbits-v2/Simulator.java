@@ -152,7 +152,6 @@ public class Simulator
                     Rabbit rabbit = new Rabbit(true, field, location);
                     animals.add(rabbit);
                 }
-
                 else if(rand.nextDouble() <= GRASS_CREATION_PROBABILITY) {
                     Location location = new Location(row, col);
                     Grass grass = new Grass(true, field, location);

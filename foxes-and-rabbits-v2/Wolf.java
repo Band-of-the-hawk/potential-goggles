@@ -28,6 +28,9 @@ public class Wolf extends Actor
     // The food value of a single fox. In effect, this is the
     // number of steps a wolf can go before it has to eat again.
     private static final int FOX_FOOD_VALUE = 160;
+    // The food value of a single rabbit. In effect, this is the
+    // number of steps a wolf can go before it has to eat again.
+    private static final int RABBIT_FOOD_VALUE = 5;
     // A shared random number generator to control breeding.
     private static final Random rand = Randomizer.getRandom();
     
@@ -129,6 +132,14 @@ public class Wolf extends Actor
                 if(fox.isAlive()) { 
                     fox.setDead();
                     foodLevel = FOX_FOOD_VALUE;
+                    return where;
+                }
+            }
+            else if(actor instanceof Rabbit) {
+                Rabbit rabbit = (Rabbit) actor;
+                if(rabbit.isAlive()) {
+                    rabbit.setDead();
+                    foodLevel = RABBIT_FOOD_VALUE;
                     return where;
                 }
             }
