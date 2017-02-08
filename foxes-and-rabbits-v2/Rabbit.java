@@ -1,4 +1,6 @@
+import java.util.Iterator;
 import java.util.List;
+import java.util.Objects;
 import java.util.Random;
 
 /**
@@ -20,6 +22,8 @@ public class Rabbit extends Actor
     private static final double BREEDING_PROBABILITY = 0.13;
     // The maximum number of births.
     private static final int MAX_LITTER_SIZE = 4;
+    // The food value of a single grass
+    private static final int GRASS_FOOD_VALUE = 8;
     // A shared random number generator to control breeding.
     private static final Random rand = Randomizer.getRandom();
     
@@ -27,6 +31,8 @@ public class Rabbit extends Actor
     
     // The rabbit's age.
     private int age;
+    // The rabbit's food level
+    private int foodLevel;
 
     /**
      * Create a new rabbit. A rabbit may be created with age
@@ -42,6 +48,10 @@ public class Rabbit extends Actor
         age = 0;
         if(randomAge) {
             age = rand.nextInt(MAX_AGE);
+            foodLevel = rand.nextInt(GRASS_FOOD_VALUE);
+        } else {
+            age = 0;
+            foodLevel = GRASS_FOOD_VALUE;
         }
     }
     
@@ -54,10 +64,15 @@ public class Rabbit extends Actor
     public void act(List<Actor> newRabbits)
     {
         incrementAge();
+        incrementHunger();
         if(isAlive()) {
-            giveBirth(newRabbits);            
+            giveBirth(newRabbits);
             // Try to move into a free location.
-            Location newLocation = getField().freeAdjacentLocation(getLocation());
+            Location newLocation = findFood();
+            if(newLocation == null) {
+                newLocation = getField().freeAdjacentLocation(getLocation());
+            }
+
             if(newLocation != null) {
                 setLocation(newLocation);
             }
@@ -76,6 +91,16 @@ public class Rabbit extends Actor
     {
         age++;
         if(age > MAX_AGE) {
+            setDead();
+        }
+    }
+
+    /**
+     * increment hunger
+     */
+    private void incrementHunger() {
+        foodLevel--;
+        if(foodLevel <= 0) {
             setDead();
         }
     }
@@ -111,6 +136,25 @@ public class Rabbit extends Actor
             births = rand.nextInt(MAX_LITTER_SIZE) + 1;
         }
         return births;
+    }
+
+    private Location findFood() {
+        Field field = getField();
+        List<Location> adjacent = field.adjacentLocations(getLocation());
+        Iterator<Location> it = adjacent.iterator();
+        while (it.hasNext()) {
+            Location where = it.next();
+            Object actor = field.getObjectAt(where);
+            if(actor instanceof Grass) {
+                Grass grass = (Grass) actor;
+                if(grass.isAlive()) {
+                    grass.setDead();
+                    foodLevel = GRASS_FOOD_VALUE;
+                    return where;
+                }
+            }
+        }
+        return null;
     }
 
     /**

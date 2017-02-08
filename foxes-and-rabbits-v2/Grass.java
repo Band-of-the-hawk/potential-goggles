@@ -27,7 +27,11 @@ public class Grass extends Actor
     // Amount of steps before dying
     private static final int MAX_AGE = 3000;
     // Probability that grass will doSpread
-    private static final double GROW_PROBABLITY = 0.12;
+    private static final double GROW_PROBABLITY = 0.001;
+    // Amount of spread
+
+
+
     private static final Random rand = Randomizer.getRandom();
 
     /*
@@ -69,7 +73,7 @@ public class Grass extends Actor
         Field field = getField();
         List<Location> free = field.getFreeAdjacentLocations(getLocation());
         for(int i = 0; i < free.size(); i++) {
-            if(rand.nextInt(1) < GROW_PROBABLITY) {
+            if(rand.nextDouble() < GROW_PROBABLITY) {
                 Location loc = free.remove(0);
                 Grass youngGrass = new Grass(false, field, loc);
                 newGrass.add(youngGrass);
