@@ -6,7 +6,7 @@ import java.util.List;
  * @author David J. Barnes and Michael Kölling
  * @version 2011.07.31
  */
-public abstract class Animal
+public abstract class Actor
 {
     // Whether the animal is alive or not.
     private boolean alive;
@@ -21,7 +21,7 @@ public abstract class Animal
      * @param field The field currently occupied.
      * @param location The location within the field.
      */
-    public Animal(Field field, Location location)
+    public Actor(Field field, Location location)
     {
         alive = true;
         this.field = field;
@@ -31,9 +31,9 @@ public abstract class Animal
     /**
      * Make this animal act - that is: make it do
      * whatever it wants/needs to do.
-     * @param newAnimals A list to receive newly born animals.
+     * @param newActors A list to receive newly born animals.
      */
-    abstract public void act(List<Animal> newAnimals);
+    abstract public void act(List<Actor> newActors);
 
     /**
      * Check whether the animal is alive or not.
