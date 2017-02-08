@@ -23,7 +23,7 @@ public class Simulator
     // The probability that a rabbit will be created in any given grid position.
     private static final double RABBIT_CREATION_PROBABILITY = 0.08;
     // The probability that grass will be created
-    private static final double GRASS_CREATION_PROBABILITY = 0.1;
+    private static final double GRASS_CREATION_PROBABILITY = 0.08;
     // The probability that a Wolf will be created in any given grid position.
     private static final double WOLF_CREATION_PROBABILITY = 0.005;
 
