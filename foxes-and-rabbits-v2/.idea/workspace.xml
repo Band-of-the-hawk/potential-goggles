@@ -53,8 +53,13 @@
           <file leaf-file-name="Fox.java" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/Fox.java">
               <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
+                <state relative-caret-position="1963">
+                  <caret line="158" column="39" lean-forward="false" selection-start-line="158" selection-start-column="39" selection-end-line="158" selection-end-column="39" />
+=======
                 <state relative-caret-position="-962">
                   <caret line="75" column="46" lean-forward="true" selection-start-line="75" selection-start-column="46" selection-end-line="75" selection-end-column="46" />
+>>>>>>> 8e6f70bde9ce14cba085290248b778a29c110fdb
                   <folding />
                 </state>
               </provider>
@@ -63,8 +68,18 @@
           <file leaf-file-name="Simulator.java" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/Simulator.java">
               <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
                 <state relative-caret-position="280">
                   <caret line="30" column="32" lean-forward="true" selection-start-line="30" selection-start-column="32" selection-end-line="30" selection-end-column="32" />
+=======
+<<<<<<< HEAD
+                <state relative-caret-position="365">
+                  <caret line="69" column="0" lean-forward="true" selection-start-line="69" selection-start-column="0" selection-end-line="69" selection-end-column="0" />
+=======
+                <state relative-caret-position="195">
+                  <caret line="25" column="65" lean-forward="false" selection-start-line="25" selection-start-column="65" selection-end-line="25" selection-end-column="65" />
+>>>>>>> 8e6f70bde9ce14cba085290248b778a29c110fdb
+>>>>>>> fd6ea6f4b195a7917dd57e0992a37161e15f138e
                   <folding />
                 </state>
               </provider>
@@ -650,13 +665,25 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1486554532407</updated>
+<<<<<<< HEAD
+      <workItem from="1486554538547" duration="6043000" />
+=======
       <workItem from="1486554538547" duration="5387000" />
       <workItem from="1486561489785" duration="2520000" />
+>>>>>>> 8e6f70bde9ce14cba085290248b778a29c110fdb
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
+<<<<<<< HEAD
     <option name="totallyTimeSpent" value="7986000" />
+=======
+<<<<<<< HEAD
+    <option name="totallyTimeSpent" value="6043000" />
+=======
+    <option name="totallyTimeSpent" value="7907000" />
+>>>>>>> 8e6f70bde9ce14cba085290248b778a29c110fdb
+>>>>>>> fd6ea6f4b195a7917dd57e0992a37161e15f138e
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
@@ -777,6 +804,8 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/SimulatorView.java">
+<<<<<<< HEAD
+=======
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="204">
           <caret line="16" column="13" lean-forward="false" selection-start-line="16" selection-start-column="13" selection-end-line="16" selection-end-column="13" />
@@ -785,6 +814,7 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Fox.java">
+>>>>>>> 8e6f70bde9ce14cba085290248b778a29c110fdb
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-962">
           <caret line="75" column="46" lean-forward="true" selection-start-line="75" selection-start-column="46" selection-end-line="75" selection-end-column="46" />
@@ -902,8 +932,18 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Rabbit.java">
       <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
         <state relative-caret-position="527">
           <caret line="49" column="40" lean-forward="true" selection-start-line="49" selection-start-column="40" selection-end-line="49" selection-end-column="40" />
+=======
+<<<<<<< HEAD
+        <state relative-caret-position="1963">
+          <caret line="158" column="39" lean-forward="false" selection-start-line="158" selection-start-column="39" selection-end-line="158" selection-end-column="39" />
+=======
+        <state relative-caret-position="2261">
+          <caret line="151" column="27" lean-forward="false" selection-start-line="151" selection-start-column="27" selection-end-line="151" selection-end-column="27" />
+>>>>>>> 8e6f70bde9ce14cba085290248b778a29c110fdb
+>>>>>>> fd6ea6f4b195a7917dd57e0992a37161e15f138e
           <folding />
         </state>
       </provider>
@@ -918,10 +958,22 @@
         </state>
       </provider>
     </entry>
+<<<<<<< HEAD
+    <entry file="file://$PROJECT_DIR$/Rabbit.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="365">
+          <caret line="69" column="0" lean-forward="true" selection-start-line="69" selection-start-column="0" selection-end-line="69" selection-end-column="0" />
+=======
     <entry file="file://$PROJECT_DIR$/Simulator.java">
       <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
         <state relative-caret-position="280">
           <caret line="30" column="32" lean-forward="true" selection-start-line="30" selection-start-column="32" selection-end-line="30" selection-end-column="32" />
+=======
+        <state relative-caret-position="195">
+          <caret line="25" column="65" lean-forward="false" selection-start-line="25" selection-start-column="65" selection-end-line="25" selection-end-column="65" />
+>>>>>>> 8e6f70bde9ce14cba085290248b778a29c110fdb
+>>>>>>> fd6ea6f4b195a7917dd57e0992a37161e15f138e
           <folding />
         </state>
       </provider>
