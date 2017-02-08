@@ -53,8 +53,8 @@
           <file leaf-file-name="Simulator.java" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/Simulator.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="1776">
-                  <caret line="153" column="39" lean-forward="true" selection-start-line="153" selection-start-column="39" selection-end-line="153" selection-end-column="39" />
+                <state relative-caret-position="1963">
+                  <caret line="158" column="39" lean-forward="false" selection-start-line="158" selection-start-column="39" selection-end-line="158" selection-end-column="39" />
                   <folding />
                 </state>
               </provider>
@@ -68,7 +68,7 @@
             <entry file="file://$PROJECT_DIR$/Rabbit.java">
               <provider selected="true" editor-type-id="text-editor">
                 <state relative-caret-position="1028">
-                  <caret line="107" column="23" lean-forward="true" selection-start-line="107" selection-start-column="23" selection-end-line="107" selection-end-column="23" />
+                  <caret line="108" column="23" lean-forward="false" selection-start-line="108" selection-start-column="23" selection-end-line="108" selection-end-column="23" />
                   <folding />
                 </state>
               </provider>
@@ -641,12 +641,12 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1486554532407</updated>
-      <workItem from="1486554538547" duration="5387000" />
+      <workItem from="1486554538547" duration="5988000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="5387000" />
+    <option name="totallyTimeSpent" value="5988000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
@@ -727,7 +727,7 @@
     <entry file="file://$PROJECT_DIR$/Rabbit.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1028">
-          <caret line="107" column="23" lean-forward="true" selection-start-line="107" selection-start-column="23" selection-end-line="107" selection-end-column="23" />
+          <caret line="108" column="23" lean-forward="false" selection-start-line="108" selection-start-column="23" selection-end-line="108" selection-end-column="23" />
           <folding />
         </state>
       </provider>
@@ -742,8 +742,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Simulator.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1776">
-          <caret line="153" column="39" lean-forward="true" selection-start-line="153" selection-start-column="39" selection-end-line="153" selection-end-column="39" />
+        <state relative-caret-position="1963">
+          <caret line="158" column="39" lean-forward="false" selection-start-line="158" selection-start-column="39" selection-end-line="158" selection-end-column="39" />
           <folding />
         </state>
       </provider>
