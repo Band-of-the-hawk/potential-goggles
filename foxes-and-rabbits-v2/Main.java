@@ -12,7 +12,7 @@ public class Main
 {
     public static void main(String[] args)
     {
-        Simulator simulator = new Simulator(300, 300);
+        Simulator simulator = new Simulator(300, 350);
         simulator.simulate(10000);
     }
 }
