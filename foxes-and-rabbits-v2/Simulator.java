@@ -139,10 +139,20 @@ public class Simulator
     private void populate()
     {
         Random rand = Randomizer.getRandom();
-        field.clear();
+        field.clear(true);
         for(int row = 0; row < field.getDepth(); row++) {
             for(int col = 0; col < field.getWidth(); col++) {
-                if(rand.nextDouble() <= FOX_CREATION_PROBABILITY) {
+                if(false/*rand.nextDouble() <= GRASS_CREATION_PROBABILITY*/) {
+                    Location location = new Location(row, col);
+                    Grass grass = new Grass(true, field, location);
+                    animals.add(grass);
+                }
+                else if(rand.nextDouble() <= WOLF_CREATION_PROBABILITY) {
+                    Location location = new Location(row, col);
+                    Wolf wolf = new Wolf(true, field, location);
+                    animals.add(wolf);
+                }
+                else if(rand.nextDouble() <= FOX_CREATION_PROBABILITY) {
                     Location location = new Location(row, col);
                     Fox fox = new Fox(true, field, location);
                     animals.add(fox);
@@ -151,16 +161,6 @@ public class Simulator
                     Location location = new Location(row, col);
                     Rabbit rabbit = new Rabbit(true, field, location);
                     animals.add(rabbit);
-                }
-                /*else if(rand.nextDouble() <= GRASS_CREATION_PROBABILITY) {
-                    Location location = new Location(row, col);
-                    Grass grass = new Grass(true, field, location);
-                    animals.add(grass);
-                }*/
-                else if(rand.nextDouble() <= WOLF_CREATION_PROBABILITY) {
-                    Location location = new Location(row, col);
-                    Wolf wolf = new Wolf(true, field, location);
-                    animals.add(wolf);
                 }
                 // else leave the location empty.
 

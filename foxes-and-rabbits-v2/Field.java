@@ -20,7 +20,7 @@ public class Field
     // The depth and width of the field.
     private int depth, width;
     // Storage for the animals.
-    private Object[][] field;
+    private final Object[][] field;
 
     /**
      * Represent a field of the given dimensions.
@@ -36,12 +36,13 @@ public class Field
     
     /**
      * Empty the field.
+     * @param all
      */
-    public void clear()
+    public void clear(boolean all)
     {
         for(int row = 0; row < depth; row++) {
             for(int col = 0; col < width; col++) {
-                field[row][col] = null;
+                clear(new Location(row, col), all);
             }
         }
     }
@@ -49,10 +50,18 @@ public class Field
     /**
      * Clear the given location.
      * @param location The location to clear.
+     * @param all
      */
-    public void clear(Location location)
+    public void clear(Location location, boolean all)
     {
-        field[location.getRow()][location.getCol()] = null;
+        if(all){
+            field[location.getRow()][location.getCol()] = null;
+        } else {
+        ArrayList<Object> actors;
+        actors = (ArrayList<Object>) field[location.getRow()][location.getCol()];
+        actors.remove(1);
+        field[location.getRow()][location.getCol()] = actors;
+        }
     }
     
     /**
@@ -60,12 +69,13 @@ public class Field
      * If there is already an animal at the location it will
      * be lost.
      * @param actor The actor to be placed.
+     * @param isStatic
      * @param row Row coordinate of the location.
      * @param col Column coordinate of the location.
      */
-    public void place(Object actor, int row, int col)
+    public void place(Object actor, boolean isStatic, int row, int col)
     {
-        place(actor, new Location(row, col));
+        place(actor, isStatic, new Location(row, col));
     }
     
     /**
@@ -73,33 +83,49 @@ public class Field
      * If there is already an animal at the location it will
      * be lost.
      * @param actor The actor to be placed.
+     * @param isStatic
      * @param location Where to place the animal.
      */
-    public void place(Object actor, Location location)
+    public void place(Object actor, boolean isStatic, Location location)
     {
         ArrayList<Object> actors = new ArrayList<>();
-        field[location.getRow()][location.getCol()] = actor;
+        if(isStatic) {
+            actors.add(0, actor);
+        } else {
+            actors.add(1, actor);
+        }
+        field[location.getRow()][location.getCol()] = actors;
     }
     
     /**
      * Return the animal at the given location, if any.
      * @param location Where in the field.
+     * @param isStatic
      * @return The animal at the given location, or null if there is none.
      */
-    public Object getObjectAt(Location location)
+    public Object getObjectAt(Location location, boolean isStatic)
     {
-        return getObjectAt(location.getRow(), location.getCol());
+        return getObjectAt(location.getRow(), location.getCol(), isStatic);
     }
     
     /**
      * Return the animal at the given location, if any.
      * @param row The desired row.
      * @param col The desired column.
+     * @param isStatic
      * @return The actor at the given location, or null if there is none.
      */
-    public Object getObjectAt(int row, int col)
+    public Object getObjectAt(int row, int col, boolean isStatic)
     {
-        return field[row][col];
+        ArrayList<Object> actors;
+        actors = (ArrayList<Object>) field[row][col];
+        Object actor;
+        if(isStatic) {
+            actor = actors.get(0);
+        } else {
+            actor = actors.get(1);
+        }
+        return actor;
     }
     
     /**
@@ -126,7 +152,7 @@ public class Field
         List<Location> free = new LinkedList<>();
         List<Location> adjacent = adjacentLocations(location);
         for(Location next : adjacent) {
-            if(getObjectAt(next) == null) {
+            if(getObjectAt(next, false) == null) {
                 free.add(next);
             }
         }
@@ -164,7 +190,7 @@ public class Field
     {
         assert location != null : "Null location passed to adjacentLocations";
         // The list of locations to be returned.
-        List<Location> locations = new LinkedList<Location>();
+        List<Location> locations = new LinkedList<>();
         if(location != null) {
             int row = location.getRow();
             int col = location.getCol();
