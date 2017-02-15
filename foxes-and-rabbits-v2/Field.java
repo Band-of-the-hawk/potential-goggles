@@ -77,7 +77,7 @@ public class Field
      */
     public void place(Object actor, Location location)
     {
-        ArrayList<Object> = new ArrayList<>();
+        ArrayList<Object> actors = new ArrayList<>();
         field[location.getRow()][location.getCol()] = actor;
     }
     
