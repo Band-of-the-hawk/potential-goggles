@@ -99,7 +99,7 @@ public class Rabbit extends Actor
      * increment hunger
      */
     private void incrementHunger() {
-        foodLevel--;
+        //foodLevel--;
         if(foodLevel <= 0) {
             setDead();
         }
