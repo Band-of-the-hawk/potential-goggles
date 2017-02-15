@@ -103,19 +103,19 @@ public class Simulator
     {
         step++;
 
-        // Provide space for newborn animals.
-        List<Actor> newAnimals = new ArrayList<Actor>();        
-        // Let all rabbits act.
+        // Provide space for new actors.
+        List<Actor> newActors = new ArrayList<>();        
+        // Let all actors act.
         for(Iterator<Actor> it = animals.iterator(); it.hasNext(); ) {
-            Actor animal = it.next();
-            animal.act(newAnimals);
-            if(! animal.isAlive()) {
+            Actor actor = it.next();
+            actor.act(newActors);
+            if(! actor.isAlive()) {
                 it.remove();
             }
         }
                
         // Add the newly born foxes and rabbits to the main lists.
-        animals.addAll(newAnimals);
+        animals.addAll(newActors);
 
         view.showStatus(step, field);
     }
