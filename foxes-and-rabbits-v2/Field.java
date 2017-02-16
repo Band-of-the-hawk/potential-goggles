@@ -65,6 +65,24 @@ public class Field
     }
     
     /**
+     * Clear the given location.
+     * @param location The location to clear.
+     * @param isStatic
+     */
+    public void clearActors(Location location, boolean isStatic)
+    {
+        ArrayList<Object> actors;
+        actors = (ArrayList<Object>) field[location.getRow()][location.getCol()];
+        if(isStatic){
+        actors.remove(0);
+        field[location.getRow()][location.getCol()] = actors;
+        } else {
+        actors.remove(1);
+        field[location.getRow()][location.getCol()] = actors;
+        }
+    }
+    
+    /**
      * Place an animal at the given location.
      * If there is already an animal at the location it will
      * be lost.

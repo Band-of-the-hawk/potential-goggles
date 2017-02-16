@@ -79,7 +79,7 @@ public class Fox extends Actor
             }
             else {
                 // Overcrowding.
-                setDead();
+                setDead(false);
             }
         }
     }
@@ -91,7 +91,7 @@ public class Fox extends Actor
     {
         age++;
         if(age > MAX_AGE) {
-            setDead();
+            setDead(false);
         }
     }
     
@@ -102,7 +102,7 @@ public class Fox extends Actor
     {
         foodLevel--;
         if(foodLevel <= 0) {
-            setDead();
+            setDead(false);
         }
     }
     
@@ -122,7 +122,7 @@ public class Fox extends Actor
             if(actor instanceof Rabbit) {
                 Rabbit rabbit = (Rabbit) actor;
                 if(rabbit.isAlive()) { 
-                    rabbit.setDead();
+                    rabbit.setDead(false);
                     foodLevel = RABBIT_FOOD_VALUE;
                     return where;
                 }

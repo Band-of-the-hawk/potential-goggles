@@ -31,6 +31,8 @@ public class Wolf extends Actor
     // The food value of a single rabbit. In effect, this is the
     // number of steps a wolf can go before it has to eat again.
     private static final int RABBIT_FOOD_VALUE = 5;
+    // Whether or not the grass 'walks'
+    private static final boolean STATIC_ACTOR = true;
     // A shared random number generator to control breeding.
     private static final Random rand = Randomizer.getRandom();
     
@@ -50,7 +52,7 @@ public class Wolf extends Actor
      */
     public Wolf(boolean randomAge, Field field, Location location)
     {
-        super(field, location, false);
+        super(field, location, STATIC_ACTOR);
         if(randomAge) {
             age = rand.nextInt(MAX_AGE);
             foodLevel = rand.nextInt(FOX_FOOD_VALUE);
@@ -83,11 +85,11 @@ public class Wolf extends Actor
             }
             // See if it was possible to move.
             if(newLocation != null) {
-                setLocation(newLocation, false);
+                setLocation(newLocation, STATIC_ACTOR);
             }
             else {
                 // Overcrowding.
-                setDead();
+                setDead(STATIC_ACTOR);
             }
         }
     }
@@ -99,7 +101,7 @@ public class Wolf extends Actor
     {
         age++;
         if(age > MAX_AGE) {
-            setDead();
+            setDead(STATIC_ACTOR);
         }
     }
     
@@ -110,7 +112,7 @@ public class Wolf extends Actor
     {
         foodLevel--;
         if(foodLevel <= 0) {
-            setDead();
+            setDead(STATIC_ACTOR);
         }
     }
     
@@ -130,7 +132,7 @@ public class Wolf extends Actor
             if(actor instanceof Fox) {
                 Fox fox = (Fox) actor;
                 if(fox.isAlive()) { 
-                    fox.setDead();
+                    fox.setDead(false);
                     foodLevel = FOX_FOOD_VALUE;
                     return where;
                 }
@@ -138,7 +140,7 @@ public class Wolf extends Actor
             else if(actor instanceof Rabbit) {
                 Rabbit rabbit = (Rabbit) actor;
                 if(rabbit.isAlive()) {
-                    rabbit.setDead();
+                    rabbit.setDead(false);
                     foodLevel = RABBIT_FOOD_VALUE;
                     return where;
                 }
