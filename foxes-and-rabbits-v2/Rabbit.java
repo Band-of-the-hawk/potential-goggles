@@ -7,7 +7,7 @@ import java.util.Random;
  * A simple model of a rabbit.
  * Rabbits age, move, breed, and die.
  * 
- * @author David J. Barnes and Michael Kölling
+ * @author David J. Barnes and Michael KÃ¶lling
  * @version 2011.07.31
  */
 public class Rabbit extends Actor
@@ -23,7 +23,9 @@ public class Rabbit extends Actor
     // The maximum number of births.
     private static final int MAX_LITTER_SIZE = 4;
     // The food value of a single grass
-    private static final int GRASS_FOOD_VALUE = 8;
+    private static final int GRASS_FOOD_VALUE = 2;
+    // Whether or not the grass 'walks'
+    private static final boolean STATIC_ACTOR = false;
     // A shared random number generator to control breeding.
     private static final Random rand = Randomizer.getRandom();
     
@@ -44,7 +46,7 @@ public class Rabbit extends Actor
      */
     public Rabbit(boolean randomAge, Field field, Location location)
     {
-        super(field, location, false);
+        super(field, location, STATIC_ACTOR);
         age = 0;
         if(randomAge) {
             age = rand.nextInt(MAX_AGE);
@@ -74,11 +76,11 @@ public class Rabbit extends Actor
             }
 
             if(newLocation != null) {
-                setLocation(newLocation, false);
+                setLocation(newLocation, STATIC_ACTOR);
             }
             else {
                 // Overcrowding.
-                setDead();
+                setDead(STATIC_ACTOR);
             }
         }
     }
@@ -91,7 +93,7 @@ public class Rabbit extends Actor
     {
         age++;
         if(age > MAX_AGE) {
-            setDead();
+            setDead(STATIC_ACTOR);
         }
     }
 
@@ -101,7 +103,7 @@ public class Rabbit extends Actor
     private void incrementHunger() {
         //foodLevel--;
         if(foodLevel <= 0) {
-            setDead();
+            setDead(STATIC_ACTOR);
         }
     }
     
@@ -144,11 +146,11 @@ public class Rabbit extends Actor
         Iterator<Location> it = adjacent.iterator();
         while (it.hasNext()) {
             Location where = it.next();
-            Object actor = field.getObjectAt(where, false);
+            Object actor = field.getObjectAt(where, true);
             if(actor instanceof Grass) {
                 Grass grass = (Grass) actor;
-                if(grass.isAlive()) {
-                    grass.setDead();
+                if(grass.isEdible()) {
+                    grass.eat();
                     foodLevel = GRASS_FOOD_VALUE;
                     return where;
                 }

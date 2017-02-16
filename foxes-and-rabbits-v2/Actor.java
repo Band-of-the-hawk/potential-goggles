@@ -48,12 +48,13 @@ public abstract class Actor
     /**
      * Indicate that the animal is no longer alive.
      * It is removed from the field.
+     * @param isStatic
      */
-    protected void setDead()
+    protected void setDead(boolean isStatic)
     {
         alive = false;
         if(location != null) {
-            field.clear(location, false);
+            field.clearActors(location, isStatic);
             location = null;
             field = null;
         }
@@ -75,8 +76,8 @@ public abstract class Actor
      */
     protected void setLocation(Location newLocation, boolean staticActor)
     {
-        if(location != null) {
-            field.clear(location, false);
+        if((location != null) && !staticActor) {
+            field.clear(location, true);
         }
         location = newLocation;
         field.place(this, staticActor, newLocation);
