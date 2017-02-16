@@ -15,9 +15,9 @@ public class Simulator
 {
     // Constants representing configuration information for the simulation.
     // The default width for the grid.
-    private static final int DEFAULT_WIDTH = 120;
+    private static final int DEFAULT_WIDTH = 180;
     // The default depth of the grid.
-    private static final int DEFAULT_DEPTH = 80;
+    private static final int DEFAULT_DEPTH = 120;
     // The probability that a fox will be created in any given grid position.
     private static final double FOX_CREATION_PROBABILITY = 0.02;
     // The probability that a rabbit will be created in any given grid position.
@@ -103,19 +103,19 @@ public class Simulator
     {
         step++;
 
-        // Provide space for newborn animals.
-        List<Actor> newAnimals = new ArrayList<Actor>();        
-        // Let all rabbits act.
+        // Provide space for new actors.
+        List<Actor> newActors = new ArrayList<>();        
+        // Let all actors act.
         for(Iterator<Actor> it = animals.iterator(); it.hasNext(); ) {
-            Actor animal = it.next();
-            animal.act(newAnimals);
-            if(! animal.isAlive()) {
+            Actor actor = it.next();
+            actor.act(newActors);
+            if(! actor.isAlive()) {
                 it.remove();
             }
         }
                
         // Add the newly born foxes and rabbits to the main lists.
-        animals.addAll(newAnimals);
+        animals.addAll(newActors);
 
         view.showStatus(step, field);
     }
@@ -139,20 +139,10 @@ public class Simulator
     private void populate()
     {
         Random rand = Randomizer.getRandom();
-        field.clear();
+        field.clear(true);
         for(int row = 0; row < field.getDepth(); row++) {
             for(int col = 0; col < field.getWidth(); col++) {
-                if(rand.nextDouble() <= FOX_CREATION_PROBABILITY) {
-                    Location location = new Location(row, col);
-                    Fox fox = new Fox(true, field, location);
-                    animals.add(fox);
-                }
-                else if(rand.nextDouble() <= RABBIT_CREATION_PROBABILITY) {
-                    Location location = new Location(row, col);
-                    Rabbit rabbit = new Rabbit(true, field, location);
-                    animals.add(rabbit);
-                }
-                else if(rand.nextDouble() <= GRASS_CREATION_PROBABILITY) {
+                if(false/*rand.nextDouble() <= GRASS_CREATION_PROBABILITY*/) {
                     Location location = new Location(row, col);
                     Grass grass = new Grass(true, field, location);
                     animals.add(grass);
@@ -161,6 +151,16 @@ public class Simulator
                     Location location = new Location(row, col);
                     Wolf wolf = new Wolf(true, field, location);
                     animals.add(wolf);
+                }
+                else if(rand.nextDouble() <= FOX_CREATION_PROBABILITY) {
+                    Location location = new Location(row, col);
+                    Fox fox = new Fox(true, field, location);
+                    animals.add(fox);
+                }
+                else if(rand.nextDouble() <= RABBIT_CREATION_PROBABILITY) {
+                    Location location = new Location(row, col);
+                    Rabbit rabbit = new Rabbit(true, field, location);
+                    animals.add(rabbit);
                 }
                 // else leave the location empty.
 

@@ -25,10 +25,11 @@ public class Grass extends Actor
         GENERAL VARIABLES FOR GRASS
      */
     // Amount of steps before dying
-    private static final int MAX_AGE = 3000;
+    private static final int MAX_AGE = 180;
     // Probability that grass will doSpread
-    private static final double GROW_PROBABLITY = 0.001;
-    // Amount of spread
+    private static final double GROW_RATE = 0.1;
+    // Whether or not the grass 'walks'
+    private static final boolean STATIC_ACTOR = true;
 
 
 
@@ -43,7 +44,7 @@ public class Grass extends Actor
 
     public Grass(boolean randAge, Field field, Location location)
     {
-        super(field, location);
+        super(field, location, STATIC_ACTOR);
         age = 0;
         if(randAge) {
             age = rand.nextInt(MAX_AGE);
@@ -73,7 +74,7 @@ public class Grass extends Actor
         Field field = getField();
         List<Location> free = field.getFreeAdjacentLocations(getLocation());
         for(int i = 0; i < free.size(); i++) {
-            if(rand.nextDouble() < GROW_PROBABLITY) {
+            if(rand.nextDouble() < GROW_RATE) {
                 Location loc = free.remove(0);
                 Grass youngGrass = new Grass(false, field, loc);
                 newGrass.add(youngGrass);

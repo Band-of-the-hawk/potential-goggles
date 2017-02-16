@@ -43,7 +43,7 @@ public class Fox extends Actor
      */
     public Fox(boolean randomAge, Field field, Location location)
     {
-        super(field, location);
+        super(field, location, false);
         if(randomAge) {
             age = rand.nextInt(MAX_AGE);
             foodLevel = rand.nextInt(RABBIT_FOOD_VALUE);
@@ -75,7 +75,7 @@ public class Fox extends Actor
             }
             // See if it was possible to move.
             if(newLocation != null) {
-                setLocation(newLocation);
+                setLocation(newLocation, false);
             }
             else {
                 // Overcrowding.
@@ -118,7 +118,7 @@ public class Fox extends Actor
         Iterator<Location> it = adjacent.iterator();
         while(it.hasNext()) {
             Location where = it.next();
-            Object actor = field.getObjectAt(where);
+            Object actor = field.getObjectAt(where, false);
             if(actor instanceof Rabbit) {
                 Rabbit rabbit = (Rabbit) actor;
                 if(rabbit.isAlive()) { 

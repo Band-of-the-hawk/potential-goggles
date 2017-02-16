@@ -20,12 +20,13 @@ public abstract class Actor
      * 
      * @param field The field currently occupied.
      * @param location The location within the field.
+     * @param staticActor
      */
-    public Actor(Field field, Location location)
+    public Actor(Field field, Location location, boolean staticActor)
     {
         alive = true;
         this.field = field;
-        setLocation(location);
+        setLocation(location, staticActor);
     }
     
     /**
@@ -52,7 +53,7 @@ public abstract class Actor
     {
         alive = false;
         if(location != null) {
-            field.clear(location);
+            field.clear(location, false);
             location = null;
             field = null;
         }
@@ -70,14 +71,15 @@ public abstract class Actor
     /**
      * Place the animal at the new location in the given field.
      * @param newLocation The animal's new location.
+     * @param staticActor
      */
-    protected void setLocation(Location newLocation)
+    protected void setLocation(Location newLocation, boolean staticActor)
     {
         if(location != null) {
-            field.clear(location);
+            field.clear(location, false);
         }
         location = newLocation;
-        field.place(this, newLocation);
+        field.place(this, staticActor, newLocation);
     }
     
     /**
