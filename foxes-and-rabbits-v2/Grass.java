@@ -23,7 +23,7 @@ public class Grass extends Actor
     // Maximum possible height for grass
     private static final int MAX_HEIGHT = 3;
     // Probability that grass will doSpread
-    private static final double GROW_RATE = 0.1;
+    private static final double GROW_RATE = 0.5;
     // Whether or not the grass 'walks'
     private static final boolean STATIC_ACTOR = true;
 
@@ -103,15 +103,15 @@ public class Grass extends Actor
      * @param newGrass 
      */
     private void doGrow(List<Actor> newGrass) {
-        //Field field = getField();
-        //List<Location> free = field.getFreeAdjacentLocations(getLocation());
-        //for(int i = 0; i < free.size(); i++) {
+        Field field = getField();
+        List<Location> free = field.getFreeAdjacentLocations(getLocation());
+        for(int i = 0; i < free.size(); i++) {
             if((rand.nextDouble() < GROW_RATE) && (height < MAX_HEIGHT)) {
                 //Location loc = free.remove(0);
                 //Grass youngGrass = new Grass(false, field, loc);
                 //newGrass.add(youngGrass);
                 height++;
             }
-        //}
+        }
     }
 }
