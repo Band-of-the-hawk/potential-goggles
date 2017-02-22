@@ -1,9 +1,4 @@
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Iterator;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Random;
+import java.util.*;
 
 /**
  * Represent a rectangular grid of field positions.
@@ -57,8 +52,8 @@ public class Field
         if(all){
             field[location.getRow()][location.getCol()] = null;
         } else {
-        ArrayList<Object> actors;
-        actors = (ArrayList<Object>) field[location.getRow()][location.getCol()];
+        HashMap<Object, Object> actors;
+        actors = (HashMap<Object, Object>) field[location.getRow()][location.getCol()];
         actors.remove(1);
         field[location.getRow()][location.getCol()] = actors;
         }
@@ -71,8 +66,8 @@ public class Field
      */
     public void clearActors(Location location, boolean isStatic)
     {
-        ArrayList<Object> actors;
-        actors = (ArrayList<Object>) field[location.getRow()][location.getCol()];
+        HashMap<Object, Object> actors;
+        actors = (HashMap<Object, Object>) field[location.getRow()][location.getCol()];
         if(isStatic){
         actors.remove(0);
         field[location.getRow()][location.getCol()] = actors;
@@ -106,13 +101,22 @@ public class Field
      */
     public void place(Object actor, boolean isStatic, Location location)
     {
-        ArrayList<Object> actors = new ArrayList<>();
-        if(isStatic) {
-            actors.add(0, actor);
+        if(field[location.getRow()][location.getCol()] == null) {
+            HashMap<Object, Object> actors = new HashMap<>();
+            if(isStatic) {
+                actors.put(0, actor);
+            } else {
+                actors.put(1, actor);
+            }
         } else {
-            actors.add(1, actor);
+            HashMap<Object, Object> actors;
+            actors = (HashMap<Object, Object>) field[location.getRow()][location.getCol()];
+            if(isStatic) {
+                actors.put(0, actor);
+            } else {
+                actors.put(1, actor);
+            }
         }
-        field[location.getRow()][location.getCol()] = actors;
     }
     
     /**
@@ -135,9 +139,10 @@ public class Field
      */
     public Object getObjectAt(int row, int col, boolean isStatic)
     {
-        ArrayList<Object> actors;
-        actors = (ArrayList<Object>) field[row][col];
+        HashMap<Object, Object> actors;
+        actors = (HashMap<Object, Object>) field[row][col];
         Object actor;
+        if(actors == null) return null;
         if(isStatic) {
             actor = actors.get(0);
         } else {
