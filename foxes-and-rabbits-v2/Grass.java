@@ -51,6 +51,10 @@ public class Grass extends Actor
         }
     }
 
+    /**
+     * 
+     * @param newGrass 
+     */
     @Override
     public void act(List<Actor> newGrass)
     {
@@ -58,6 +62,16 @@ public class Grass extends Actor
         if(isAlive()) {
             doGrow(newGrass);
         }
+    }
+    
+    /**
+     * 
+     * @param isStatic 
+     */
+    @Override
+    public void setDead(boolean isStatic)
+    {
+        height = 0;
     }
 
     /**
@@ -67,7 +81,7 @@ public class Grass extends Actor
     {
         age++;
         if(age > MAX_AGE) {
-            setDead(false);
+            setDead(STATIC_ACTOR);
         }
     }
     

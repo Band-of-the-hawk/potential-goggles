@@ -58,7 +58,7 @@ public class Simulator
             width = DEFAULT_WIDTH;
         }
         
-        animals = new ArrayList<Actor>();
+        animals = new ArrayList<>();
         field = new Field(depth, width);
 
         // Create a view of the state of each location in the field.

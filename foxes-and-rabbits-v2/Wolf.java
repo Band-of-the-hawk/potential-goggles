@@ -10,7 +10,7 @@ import java.util.Random;
 
 /**
  *
- * @author ThomasSTodal
+ * @author ThomasSTodal, VinhKTran, KristofferMartinsen
  */
 public class Wolf extends Actor
 {
@@ -22,7 +22,7 @@ public class Wolf extends Actor
     // The age to which a wolf can live.
     private static final int MAX_AGE = 2900;
     // The likelihood of a wolf breeding.
-    private static final double BREEDING_PROBABILITY = 0.005;
+    private static final double BREEDING_PROBABILITY = 0.008;
     // The maximum number of births.
     private static final int MAX_LITTER_SIZE = 1;
     // The food value of a single fox. In effect, this is the
@@ -31,8 +31,8 @@ public class Wolf extends Actor
     // The food value of a single rabbit. In effect, this is the
     // number of steps a wolf can go before it has to eat again.
     private static final int RABBIT_FOOD_VALUE = 5;
-    // Whether or not the grass 'walks'
-    private static final boolean STATIC_ACTOR = true;
+    // Whether or not the actor 'walks'
+    private static final boolean STATIC_ACTOR = false;
     // A shared random number generator to control breeding.
     private static final Random rand = Randomizer.getRandom();
     

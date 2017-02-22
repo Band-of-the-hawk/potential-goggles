@@ -144,6 +144,7 @@ public class Rabbit extends Actor
         Field field = getField();
         List<Location> adjacent = field.adjacentLocations(getLocation());
         Iterator<Location> it = adjacent.iterator();
+                    System.out.println(Integer.toString(foodLevel));
         while (it.hasNext()) {
             Location where = it.next();
             Object actor = field.getObjectAt(where, true);
@@ -152,6 +153,7 @@ public class Rabbit extends Actor
                 if(grass.isEdible()) {
                     grass.eat();
                     foodLevel = GRASS_FOOD_VALUE;
+                    if(foodLevel!=2) System.out.println(Integer.toString(foodLevel));
                     return where;
                 }
             }
