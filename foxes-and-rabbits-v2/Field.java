@@ -145,8 +145,11 @@ public class Field
         HashMap<Object, Object> actors;
         actors = (HashMap<Object, Object>) field[row][col];
         Object actor;
-        if(actors == null) return null;
-        if(isStatic) {
+        if(actors == null){
+            actor = actors;
+            System.out.println("No actors at " + Integer.toString(row)
+                    + ", " + Integer.toString(col));
+        } else if(isStatic) {
             actor = actors.get(0);
         } else {
             actor = actors.get(1);

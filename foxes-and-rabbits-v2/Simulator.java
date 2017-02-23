@@ -116,6 +116,24 @@ public class Simulator
                
         // Add the newly born foxes and rabbits to the main lists.
         animals.addAll(newActors);
+        int numGrassTot = 0;
+        int numGrassAli = 0;
+        int numGrassEdi = 0;
+        for(Actor actor : animals) {
+            if(actor instanceof Grass) {
+                Grass grass = (Grass) actor;
+                if(grass.isAlive()) {
+                    numGrassAli++;
+                }
+                if(grass.isEdible()) {
+                    numGrassEdi++;
+                }
+                numGrassTot++;
+            }
+        }
+        System.out.println("Number of grass: " + Integer.toString(numGrassTot)
+                + " Grass alive: " + Integer.toString(numGrassAli)
+                + " Grass edible: " + Integer.toString(numGrassEdi));
 
         view.showStatus(step, field);
     }
