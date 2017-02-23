@@ -40,7 +40,7 @@ public class SimulatorView extends JFrame
     public SimulatorView(int height, int width)
     {
         stats = new FieldStats();
-        colors = new LinkedHashMap<Class, Color>();
+        colors = new LinkedHashMap<>();
 
         setTitle("Fox and Rabbit Simulation");
         stepLabel = new JLabel(STEP_PREFIX, JLabel.CENTER);
@@ -102,11 +102,15 @@ public class SimulatorView extends JFrame
         for(int row = 0; row < field.getDepth(); row++) {
             for(int col = 0; col < field.getWidth(); col++) {
                 Object animal = field.getObjectAt(row, col, false);
+                Object grass = field.getObjectAt(row, col, true);
+                if(grass != null) {
+                    stats.incrementCount(grass.getClass());
+                    fieldView.drawMark(col, row, getColor(grass.getClass()));
+                }
                 if(animal != null) {
                     stats.incrementCount(animal.getClass());
                     fieldView.drawMark(col, row, getColor(animal.getClass()));
-                }
-                else {
+                } else if(animal == null && grass == null) {
                     fieldView.drawMark(col, row, EMPTY_COLOR);
                 }
             }
@@ -119,6 +123,7 @@ public class SimulatorView extends JFrame
 
     /**
      * Determine whether the simulation should continue to run.
+     * @param field
      * @return true If there is more than one species alive.
      */
     public boolean isViable(Field field)
@@ -157,6 +162,7 @@ public class SimulatorView extends JFrame
         /**
          * Tell the GUI manager how big we would like to be.
          */
+        @Override
         public Dimension getPreferredSize()
         {
             return new Dimension(gridWidth * GRID_VIEW_SCALING_FACTOR,
@@ -198,6 +204,7 @@ public class SimulatorView extends JFrame
          * The field view component needs to be redisplayed. Copy the
          * internal image to screen.
          */
+        @Override
         public void paintComponent(Graphics g)
         {
             if(fieldImage != null) {

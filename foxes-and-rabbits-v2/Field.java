@@ -68,13 +68,14 @@ public class Field
     {
         HashMap<Object, Object> actors;
         actors = (HashMap<Object, Object>) field[location.getRow()][location.getCol()];
-        if(isStatic){
-        actors.remove(0);
-        field[location.getRow()][location.getCol()] = actors;
-        } else {
-        actors.remove(1);
-        field[location.getRow()][location.getCol()] = actors;
+        if(actors != null) {
+            if(isStatic){
+                actors.remove(0);
+            } else {
+                actors.remove(1);
+            }
         }
+        field[location.getRow()][location.getCol()] = actors;
     }
     
     /**
@@ -101,22 +102,24 @@ public class Field
      */
     public void place(Object actor, boolean isStatic, Location location)
     {
-        if(field[location.getRow()][location.getCol()] == null) {
-            HashMap<Object, Object> actors = new HashMap<>();
+        Object o = field[location.getRow()][location.getCol()];
+        HashMap<Object, Object> actors;
+        if(o == null) {
+            actors = new HashMap<>();
             if(isStatic) {
                 actors.put(0, actor);
             } else {
                 actors.put(1, actor);
             }
         } else {
-            HashMap<Object, Object> actors;
-            actors = (HashMap<Object, Object>) field[location.getRow()][location.getCol()];
+            actors = (HashMap<Object, Object>) o;
             if(isStatic) {
                 actors.put(0, actor);
             } else {
                 actors.put(1, actor);
             }
         }
+        field[location.getRow()][location.getCol()] = actors;
     }
     
     /**

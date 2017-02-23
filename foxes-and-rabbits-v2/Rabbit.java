@@ -23,7 +23,7 @@ public class Rabbit extends Actor
     // The maximum number of births.
     private static final int MAX_LITTER_SIZE = 4;
     // The food value of a single grass
-    private static final int GRASS_FOOD_VALUE = 2;
+    private static final int GRASS_FOOD_VALUE = 4;
     // Whether or not the grass 'walks'
     private static final boolean STATIC_ACTOR = false;
     // A shared random number generator to control breeding.
@@ -101,7 +101,7 @@ public class Rabbit extends Actor
      * increment hunger
      */
     private void incrementHunger() {
-        //foodLevel--;
+        foodLevel--;
         if(foodLevel <= 0) {
             setDead(STATIC_ACTOR);
         }
