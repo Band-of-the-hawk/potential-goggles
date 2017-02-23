@@ -52,11 +52,13 @@ public abstract class Actor
      */
     protected void setDead(boolean isStatic)
     {
-        alive = false;
-        if(location != null) {
-            field.clearActors(location, isStatic);
-            location = null;
-            field = null;
+        if(!isStatic) {
+            alive = false;
+            if(location != null) {
+                field.clearActors(location, isStatic);
+                location = null;
+                field = null;
+            }
         }
     }
 

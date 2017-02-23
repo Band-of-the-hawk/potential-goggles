@@ -131,14 +131,14 @@ public class Wolf extends Actor
                     return where;
                 }
             }
-            else if(actor instanceof Rabbit) {
+            /*else if(actor instanceof Rabbit) {
                 Rabbit rabbit = (Rabbit) actor;
                 if(rabbit.isAlive()) {
                     rabbit.setDead(false);
                     foodLevel = RABBIT_FOOD_VALUE;
                     return where;
                 }
-            }
+            }*/
         }
         return null;
     }

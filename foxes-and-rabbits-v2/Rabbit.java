@@ -25,7 +25,7 @@ public class Rabbit extends Actor
     // The food value of a single grass
     private static final int GRASS_FOOD_VALUE = 4;
     // Whether or not the grass 'walks'
-    private static final boolean STATIC_ACTOR = false;
+    private static final boolean IS_STATIC = false;
     // A shared random number generator to control breeding.
     private static final Random rand = Randomizer.getRandom();
     
@@ -46,7 +46,7 @@ public class Rabbit extends Actor
      */
     public Rabbit(boolean randomAge, Field field, Location location)
     {
-        super(field, location, STATIC_ACTOR);
+        super(field, location, IS_STATIC);
         age = 0;
         if(randomAge) {
             age = rand.nextInt(MAX_AGE);
@@ -76,11 +76,11 @@ public class Rabbit extends Actor
             }
 
             if(newLocation != null) {
-                setLocation(newLocation, STATIC_ACTOR);
+                setLocation(newLocation, IS_STATIC);
             }
             else {
                 // Overcrowding.
-                setDead(STATIC_ACTOR);
+                setDead(IS_STATIC);
             }
         }
     }
@@ -93,7 +93,7 @@ public class Rabbit extends Actor
     {
         age++;
         if(age > MAX_AGE) {
-            setDead(STATIC_ACTOR);
+            setDead(IS_STATIC);
         }
     }
 
@@ -103,7 +103,7 @@ public class Rabbit extends Actor
     private void incrementHunger() {
         foodLevel--;
         if(foodLevel <= 0) {
-            setDead(STATIC_ACTOR);
+            setDead(IS_STATIC);
         }
     }
     
@@ -148,6 +148,7 @@ public class Rabbit extends Actor
             Location where = it.next();
             Object actor = field.getObjectAt(where, true);
             if(actor instanceof Grass) {
+                //System.out.println("Rabbit found grass");    //TODO
                 Grass grass = (Grass) actor;
                 if(grass.isEdible()) {
                     grass.eat();

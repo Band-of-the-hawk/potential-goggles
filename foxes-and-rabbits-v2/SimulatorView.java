@@ -1,5 +1,4 @@
 import java.awt.*;
-import java.awt.event.*;
 import javax.swing.*;
 import java.util.LinkedHashMap;
 import java.util.Map;
@@ -104,13 +103,16 @@ public class SimulatorView extends JFrame
                 Object animal = field.getObjectAt(row, col, false);
                 Object grass = field.getObjectAt(row, col, true);
                 if(grass != null) {
+                    //System.out.println("Drawing grass");   //TODO
                     stats.incrementCount(grass.getClass());
                     fieldView.drawMark(col, row, getColor(grass.getClass()));
                 }
                 if(animal != null) {
+                    //System.out.println("Drawing animal");    //TODO
                     stats.incrementCount(animal.getClass());
                     fieldView.drawMark(col, row, getColor(animal.getClass()));
-                } else if(animal == null && grass == null) {
+                } else if((animal == null) && (grass == null)) {
+                    //System.out.println("Drawing nothing");    //TODO
                     fieldView.drawMark(col, row, EMPTY_COLOR);
                 }
             }

@@ -58,10 +58,14 @@ public class Grass extends Actor
     @Override
     public void act(List<Actor> newGrass)
     {
+        int before = height;
         incrementAge();
         if(isAlive()) {
             doGrow(newGrass);
         }
+        /*if(height > before) {
+            System.out.print("grass grew\n");    //TODO
+        }*/
     }
     
     /**
@@ -87,6 +91,7 @@ public class Grass extends Actor
     
     public boolean isEdible()
     {
+        //ystem.out.println("Grass is edible");   //TODO
         return height > 1;
     }
     
