@@ -147,8 +147,8 @@ public class Field
         Object actor;
         if(actors == null){
             actor = actors;
-            /*System.out.println("No actors at " + Integer.toString(row)
-                    + ", " + Integer.toString(col));*/
+            System.out.println("No actors at " + Integer.toString(row)
+                    + ", " + Integer.toString(col));
         } else if(isStatic) {
             actor = actors.get(0);
         } else {
@@ -163,23 +163,25 @@ public class Field
      * The returned location will be within the valid bounds
      * of the field.
      * @param location The location from which to generate an adjacency.
+     * @param offset
      * @return A valid location within the grid area.
      */
-    public Location randomAdjacentLocation(Location location)
+    public Location randomAdjacentLocation(Location location, int offset)
     {
-        List<Location> adjacent = adjacentLocations(location, 1);
+        List<Location> adjacent = adjacentLocations(location, offset);
         return adjacent.get(0);
     }
     
     /**
      * Get a shuffled list of the free adjacent locations.
      * @param location Get locations adjacent to this.
+     * @param offset
      * @return A list of free adjacent locations.
      */
-    public List<Location> getFreeAdjacentLocations(Location location)
+    public List<Location> getFreeAdjacentLocations(Location location, int offset)
     {
         List<Location> free = new LinkedList<>();
-        List<Location> adjacent = adjacentLocations(location, 1);
+        List<Location> adjacent = adjacentLocations(location, offset);
         for(Location next : adjacent) {
             if(getObjectAt(next, false) == null) {
                 free.add(next);
@@ -199,13 +201,37 @@ public class Field
     public Location freeAdjacentLocation(Location location)
     {
         // The available free ones.
-        List<Location> free = getFreeAdjacentLocations(location);
+        List<Location> free = getFreeAdjacentLocations(location, 1);
         if(free.size() > 0) {
             return free.get(0);
         }
         else {
             return null;
         }
+    }
+    
+    private List<Location> findOccupiedLoc(List<Location> locations)
+    {
+        List<Location> occupiedLocs = new LinkedList<>();
+        
+        for(Location location : locations) {
+            Object o = this.getObjectAt(location, false);
+            if(o != null) {
+                occupiedLocs.add(location);
+            }
+        }
+        return occupiedLocs;
+    }
+    
+    public List<Location> listClosest(Location location, int offset)
+    {
+        List<Location> closest = new LinkedList<>();
+        int thisRow = location.getRow();
+        int thisCol = location.getCol();
+        
+        
+        
+        return closest;
     }
 
     /**
@@ -221,6 +247,7 @@ public class Field
         assert location != null : "Null location passed to adjacentLocations";
         // The list of locations to be returned.
         List<Location> locations = new LinkedList<>();
+        List<Location> insideLoc = adjacentLocationsAll(location, (offset - 1));
         if(location != null) {
             int row = location.getRow();
             int col = location.getCol();
@@ -229,9 +256,39 @@ public class Field
                 if(nextRow >= 0 && nextRow < depth) {
                     for(int coffset = -offset; coffset <= offset; coffset++) {
                         int nextCol = col + coffset;
+                        Location thisLocation = new Location(nextRow, nextCol);
+                        // Exclude invalid locations and the original location.
+                        if(nextCol >= 0 && nextCol < width && (roffset != 0 || coffset != 0) && !insideLoc.contains(thisLocation)) {
+                            locations.add(thisLocation);
+                        }
+                    }
+                }
+            }
+            
+            // Shuffle the list. Several other methods rely on the list
+            // being in a random order.
+            Collections.shuffle(locations, rand);
+        }
+        return locations;
+    }
+    
+    private List<Location> adjacentLocationsAll(Location location, int offset)
+    {
+        assert location != null : "Null location passed to adjacentLocations";
+        // The list of locations to be returned.
+        List<Location> locations = new LinkedList<>();
+        if(location != null) {
+            int row = location.getRow();
+            int col = location.getCol();
+            for(int roffset = -offset; roffset <= offset; roffset++) {
+                int nextRow = row + roffset;
+                if(nextRow >= 0 && nextRow < depth) {
+                    for(int coffset = -offset; coffset <= offset; coffset++) {
+                        int nextCol = col + coffset;
+                        Location thisLocation = new Location(nextRow, nextCol);
                         // Exclude invalid locations and the original location.
                         if(nextCol >= 0 && nextCol < width && (roffset != 0 || coffset != 0)) {
-                            locations.add(new Location(nextRow, nextCol));
+                            locations.add(thisLocation);
                         }
                     }
                 }
