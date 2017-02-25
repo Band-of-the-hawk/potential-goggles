@@ -3,7 +3,7 @@ import java.util.Random;
 
 /**
  * Om gress
- * Dør etter 10 år
+ * Dør etter 6 mnd
  * Blir spist av kanin
  * Tar 1 år å gro tilbake
  */
