@@ -92,7 +92,7 @@ public class Grass extends Actor
     
     public boolean isEdible()
     {
-        //ystem.out.println("Grass is edible");   //TODO
+        //System.out.println("Grass is edible");   //TODO
         return height > 1;
     }
     

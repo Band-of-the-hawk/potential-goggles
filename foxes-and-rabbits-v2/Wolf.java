@@ -118,7 +118,7 @@ public class Wolf extends Actor
     private Location findFood()
     {
         Field field = getField();
-        List<Location> adjacent = field.adjacentLocations(getLocation());
+        List<Location> adjacent = field.adjacentLocations(getLocation(), 1);
         Iterator<Location> it = adjacent.iterator();
         while(it.hasNext()) {
             Location where = it.next();

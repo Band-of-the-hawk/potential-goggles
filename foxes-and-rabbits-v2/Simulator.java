@@ -116,7 +116,7 @@ public class Simulator
                
         // Add the newly born foxes and rabbits to the main lists.
         animals.addAll(newActors);
-        int numGrassTot = 0;
+        /*int numGrassTot = 0;
         int numGrassAli = 0;
         int numGrassEdi = 0;
         for(Actor actor : animals) {
@@ -133,8 +133,7 @@ public class Simulator
         }
         System.out.println("Number of grass: " + Integer.toString(numGrassTot)
                 + " Grass alive: " + Integer.toString(numGrassAli)
-                + " Grass edible: " + Integer.toString(numGrassEdi));
-
+                + " Grass edible: " + Integer.toString(numGrassEdi));*/
         view.showStatus(step, field);
     }
         
@@ -162,8 +161,8 @@ public class Simulator
             for(int col = 0; col < field.getWidth(); col++) {
                 //if(false/*rand.nextDouble() <= GRASS_CREATION_PROBABILITY*/) {
                     Location location = new Location(row, col);
-                    Grass grass = new Grass(true, field, location);
-                    animals.add(grass);
+                    //Grass grass = new Grass(true, field, location);
+                    //animals.add(grass);
                 //}
                 if(rand.nextDouble() <= WOLF_CREATION_PROBABILITY) {
                     //Location location = new Location(row, col);

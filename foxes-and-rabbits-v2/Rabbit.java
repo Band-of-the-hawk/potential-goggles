@@ -101,7 +101,7 @@ public class Rabbit extends Actor
      * increment hunger
      */
     private void incrementHunger() {
-        foodLevel--;
+        //foodLevel--;
         if(foodLevel <= 0) {
             setDead(IS_STATIC);
         }
@@ -141,7 +141,7 @@ public class Rabbit extends Actor
     }
 
     private Location findFood() {
-        Field field = getField();
+        /*Field field = getField();
         List<Location> adjacent = field.adjacentLocations(getLocation());
         Iterator<Location> it = adjacent.iterator();
         while (it.hasNext()) {
@@ -156,7 +156,7 @@ public class Rabbit extends Actor
                     return where;
                 }
             }
-        }
+        }*/
         return null;
     }
 
