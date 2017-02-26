@@ -3,7 +3,6 @@ import java.util.List;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.awt.Color;
-import java.util.logging.Level;
 
 /**
  * A simple predator-prey simulator, based on a rectangular field
@@ -167,7 +166,7 @@ public class Simulator
 
     public void doCreateFile() {
         ArrayList<Integer> listOfAges = logg.getListAsArrayList();
-        fileManager.createFile(listOfAges, step);
+        fileManager.createFile(listOfAges);
     }
     
     /**
