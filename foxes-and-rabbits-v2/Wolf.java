@@ -137,7 +137,7 @@ public class Wolf extends Actor
                 }
             }*/
         }
-        return getDir(findClosest(otherActors, getLocation(), 15));
+        return getDir(findClosestV2(otherActors, getLocation(), 15));
     }
     
     /**
