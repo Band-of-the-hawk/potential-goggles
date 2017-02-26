@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.awt.Color;
 import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  * A simple predator-prey simulator, based on a rectangular field
@@ -38,7 +37,7 @@ public class Simulator
     // A graphical view of the simulation.
     private SimulatorView view;
     // Logger object
-    private Logger log;
+    private Logger logg;
     // Creator of files
     private FileManager fileManager;
 
@@ -50,7 +49,7 @@ public class Simulator
      */
     public Simulator(int depth, int width)
     {
-        log = new Logger();
+        logg = new Logger();
         fileManager = new FileManager();
 
         if(width <= 0 || depth <= 0) {
@@ -112,7 +111,10 @@ public class Simulator
             Actor actor = it.next();
             actor.act(newActors);
             if(! actor.isAlive()) {
-                log.addToAges(actor.getAge());
+                ArrayList<String> stats = gatherStats(actor);
+                
+                logg.newDeadActor(stats);
+                //log.addToAges(actor.getAge());
                 it.remove();
             }
         }
@@ -139,6 +141,12 @@ public class Simulator
                 + " Grass edible: " + Integer.toString(numGrassEdi));*/
         view.showStatus(step, field);
     }
+    
+    private ArrayList<String> gatherStats(Actor actor)
+    {
+        // Gather ALL the statistics!
+        return null;
+    }
         
     /**
      * Reset the simulation to a starting position.
@@ -154,11 +162,11 @@ public class Simulator
     }
 
     public void printList() {
-        log.printAges();
+        logg.printAges();
     }
 
     public void doCreateFile() {
-        ArrayList<Integer> listOfAges = log.getListAsArrayList();
+        ArrayList<Integer> listOfAges = logg.getListAsArrayList();
         fileManager.createFile(listOfAges, step);
     }
     

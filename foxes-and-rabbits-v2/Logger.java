@@ -5,13 +5,15 @@ import java.util.ArrayList;
  */
 public class Logger {
 
-    private ArrayList ages;
-    private ArrayList step;
+    private final ArrayList ages;
+    private final ArrayList step;
+    private final ArrayList<ArrayList<String>> deadActors;
 
 
     public Logger() {
         ages = new ArrayList<>();
         step = new ArrayList<>();
+        deadActors = new ArrayList<>();
     }
 
     public void addToAges(int ageToAdd) {
@@ -26,5 +28,10 @@ public class Logger {
 
     public ArrayList<Integer> getListAsArrayList() {
         return ages;
+    }
+   
+    public void newDeadActor(ArrayList<String> newDead)
+    {
+        deadActors.add(newDead);
     }
 }
