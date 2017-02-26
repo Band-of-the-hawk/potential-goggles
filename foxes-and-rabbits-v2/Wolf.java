@@ -98,6 +98,11 @@ public class Wolf extends Actor
             setDead(STATIC_ACTOR);
         }
     }
+
+    @Override
+    public int getAge() {
+        return this.age;
+    }
     
     /**
      * Make this wolf more hungry. This could result in the wolf's death.

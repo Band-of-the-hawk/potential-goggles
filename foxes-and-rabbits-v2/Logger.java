@@ -10,21 +10,17 @@ public class Logger {
 
 
     public Logger() {
-        ArrayList ages = new ArrayList();
-        ArrayList timeOfDeath = new ArrayList();
-    }
-
-    public int getAge(int age) {
-        return age;
+        ages = new ArrayList<>();
+        timeOfDeath = new ArrayList<>();
     }
 
     public void addToAges(int ageToAdd) {
-        ages.add(ageToAdd);
+        this.ages.add(ageToAdd);
     }
 
     public void printAges() {
         for(int i = 0; i < ages.size() - 1; i++) {
-            System.out.println(ages.indexOf(i));
+            System.out.println(ages.get(i));
         }
     }
 

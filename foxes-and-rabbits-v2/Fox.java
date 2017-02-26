@@ -164,6 +164,11 @@ public class Fox extends Actor
         return births;
     }
 
+    @Override
+    public int getAge() {
+        return this.age;
+    }
+
     /**
      * A fox can breed if it has reached the breeding age.
      */

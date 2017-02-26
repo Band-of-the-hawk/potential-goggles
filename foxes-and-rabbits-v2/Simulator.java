@@ -116,6 +116,7 @@ public class Simulator
             Actor actor = it.next();
             actor.act(newActors);
             if(! actor.isAlive()) {
+                log.addToAges(actor.getAge());
                 it.remove();
             }
         }
@@ -154,6 +155,10 @@ public class Simulator
         
         // Show the starting state in the view.
         view.showStatus(step, field);
+    }
+
+    public void printList() {
+        log.printAges();
     }
     
     /**
