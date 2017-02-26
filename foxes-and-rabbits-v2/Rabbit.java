@@ -1,6 +1,4 @@
-import java.util.Iterator;
 import java.util.List;
-import java.util.Objects;
 import java.util.Random;
 
 /**
@@ -95,6 +93,11 @@ public class Rabbit extends Actor
         if(age > MAX_AGE) {
             setDead(IS_STATIC);
         }
+    }
+
+    @Override
+    public int getAge() {
+        return this.age;
     }
 
     /**

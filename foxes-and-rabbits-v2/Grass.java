@@ -67,6 +67,11 @@ public class Grass extends Actor
             System.out.print("grass grew\n");    //TODO
         }*/
     }
+
+    @Override
+    public int getAge() {
+        return this.age;
+    }
     
     /**
      * 

@@ -62,7 +62,6 @@ public class Wolf extends Actor
      * This is what the wolf does most of the time: it hunts for
      * foxes. In the process, it might breed, die of hunger,
      * or die of old age.
-     * @param field The field currently occupied.
      * @param newWolves A list to return newly born foxes.
      */
     @Override
@@ -99,6 +98,11 @@ public class Wolf extends Actor
             setDead(STATIC_ACTOR);
         }
     }
+
+    @Override
+    public int getAge() {
+        return this.age;
+    }
     
     /**
      * Make this wolf more hungry. This could result in the wolf's death.
@@ -128,14 +132,14 @@ public class Wolf extends Actor
             if(actor instanceof Fox) {
                 otherActors.add(where);
             }
-            /*else if(actor instanceof Rabbit) {
+            else if(actor instanceof Rabbit) {
                 Rabbit rabbit = (Rabbit) actor;
                 if(rabbit.isAlive()) {
                     rabbit.setDead(false);
                     foodLevel = RABBIT_FOOD_VALUE;
                     return where;
                 }
-            }*/
+            }
         }
         return getDir(findClosest(otherActors, getLocation(), 15));
     }

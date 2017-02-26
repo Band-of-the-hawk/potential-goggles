@@ -14,6 +14,8 @@ public abstract class Actor
     private Field field;
     // The animal's position in the field.
     private Location location;
+
+
     
     /**
      * Create a new animal at location in field.
@@ -35,6 +37,8 @@ public abstract class Actor
      * @param newActors A list to receive newly born animals.
      */
     abstract public void act(List<Actor> newActors);
+
+    abstract public int getAge();
 
     /**
      * Check whether the animal is alive or not.
