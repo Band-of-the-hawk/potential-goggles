@@ -14,6 +14,9 @@ public abstract class Actor
     private Field field;
     // The animal's position in the field.
     private Location location;
+
+
+
     
     /**
      * Create a new animal at location in field.

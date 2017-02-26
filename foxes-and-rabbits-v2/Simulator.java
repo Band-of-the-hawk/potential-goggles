@@ -35,6 +35,11 @@ public class Simulator
     private int step;
     // A graphical view of the simulation.
     private SimulatorView view;
+    // Logger object
+    private Logger log;
+
+
+
     
     /**
      * Construct a simulation field with default size.
@@ -42,6 +47,7 @@ public class Simulator
     public Simulator()
     {
         this(DEFAULT_DEPTH, DEFAULT_WIDTH);
+        log = new Logger();
     }
     
     /**
