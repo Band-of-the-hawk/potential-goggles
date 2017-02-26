@@ -93,4 +93,108 @@ public abstract class Actor
     {
         return field;
     }
+    
+    /**
+     * 
+     * @param locations
+     * @param location
+     * @param offset
+     * @return 
+     */
+    protected Location findClosest(List<Location> locations, Location location, int offset)
+    {
+        int thisRow = location.getRow();
+        int thisCol = location.getCol();
+        for (int d = 0; d < offset; d++){
+            for (int i = 0; i < d + 1; i++){
+                int x1 = thisRow - d + i;
+                int y1 = thisCol - i;
+                Location newLoc1 = new Location(x1, y1);
+
+                for(Location loc : locations) {
+                    if(loc.hashCode() == newLoc1.hashCode())
+                        return newLoc1;
+                }
+
+                int x2 = thisRow + d - i;
+                int y2 = thisCol + i;
+                Location newLoc2 = new Location(x2, y2);
+
+                for(Location loc : locations) {
+                    if(loc.hashCode() == newLoc2.hashCode())
+                        return newLoc2;
+                }
+            }
+
+
+            for (int i = 1; i < d; i++){
+                int x1 = thisRow - i;
+                int y1 = thisCol + d - i;
+                Location newLoc1 = new Location(x1, y1);
+
+                for(Location loc : locations) {
+                    if(loc.hashCode() == newLoc1.hashCode())
+                        return newLoc1;
+                }
+                // Check point (x1, y1)
+
+                int x2 = thisRow + d - i;
+                int y2 = thisCol - i;
+                Location newLoc2 = new Location(x2, y2);
+
+                for(Location loc : locations) {
+                    if(loc.hashCode() == newLoc2.hashCode())
+                        return newLoc2;
+                }
+            }
+        }
+       
+        
+        return null;
+    }
+    
+    /**
+     * 
+     * @param location
+     * @return 
+     */
+    protected Location getDir(Location location)
+    {
+        if(location == null) return null;
+        int thisRow = getLocation().getRow();
+        int thisCol = getLocation().getCol();
+        int targRow = location.getRow();
+        int targCol = location.getCol();
+        int newRow = 0;
+        int newCol = 0;
+        if((thisRow == targRow) && (thisCol > targCol)) {
+            
+            newCol = thisCol - 1;
+        } else if((thisRow < targRow) && (thisCol > targCol)) {
+            newRow = thisRow + 1;
+            newCol = thisCol - 1;
+        } else if((thisRow < targRow) && (thisCol == targCol)) {
+            newRow = thisRow + 1;
+            
+        } else if((thisRow < targRow) && (thisCol < targCol)) {
+            newRow = thisRow + 1;
+            newCol = thisCol + 1;
+        } else if((thisRow == targRow) && (thisCol < targCol)) {
+            
+            newCol = thisCol + 1;
+        } else if((thisRow > targRow) && (thisCol < targCol)) {
+            newRow = thisRow - 1;
+            newCol = thisCol + 1;
+        } else if((thisRow > targRow) && (thisCol == targCol)) {
+            newRow = thisRow - 1;
+            
+        } else if((thisRow > targRow) && (thisCol > targCol)) {
+            newRow = thisRow - 1;
+            newCol = thisCol - 1;
+        }
+        if((newRow != thisRow) && (newCol != thisCol)) {
+            return new Location(newRow, newCol);
+        }
+        return null;
+    }
 }

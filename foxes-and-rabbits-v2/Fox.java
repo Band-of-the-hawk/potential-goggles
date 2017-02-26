@@ -1,5 +1,6 @@
 import java.util.List;
 import java.util.Iterator;
+import java.util.LinkedList;
 import java.util.Random;
 
 /**
@@ -18,7 +19,7 @@ public class Fox extends Actor
     // The age to which a fox can live.
     private static final int MAX_AGE = 1000;
     // The likelihood of a fox breeding.
-    private static final double BREEDING_PROBABILITY = 0.08;
+    private static final double BREEDING_PROBABILITY = 0.108;
     // The maximum number of births.
     private static final int MAX_LITTER_SIZE = 3;
     // The food value of a single rabbit. In effect, this is the
@@ -68,7 +69,7 @@ public class Fox extends Actor
         if(isAlive()) {
             giveBirth(newFoxes);            
             // Move towards a source of food if found.
-            Location newLocation = findFood();
+            Location newLocation = eatFood(findFood());
             if(newLocation == null) { 
                 // No food found - try to move to a free location.
                 newLocation = getField().freeAdjacentLocation(getLocation());
@@ -114,17 +115,35 @@ public class Fox extends Actor
     private Location findFood()
     {
         Field field = getField();
-        List<Location> adjacent = field.adjacentLocations(getLocation(), 3);
+        List<Location> adjacent = field.adjacentLocationsAll(getLocation(), 5);
+        List<Location> otherActors = new LinkedList<>();
         Iterator<Location> it = adjacent.iterator();
         while(it.hasNext()) {
             Location where = it.next();
             Object actor = field.getObjectAt(where, false);
             if(actor instanceof Rabbit) {
+                otherActors.add(where);
+            }
+        }
+        return getDir(findClosest(otherActors, getLocation(), 5));
+    }
+    
+    /**
+     * 
+     * @param location
+     * @return 
+     */
+    private Location eatFood(Location location)
+    {
+        if(location != null) {
+            Field field = getField();
+            Object actor = field.getObjectAt(location, false);
+            if(actor instanceof Rabbit) {
                 Rabbit rabbit = (Rabbit) actor;
                 if(rabbit.isAlive()) { 
                     rabbit.setDead(false);
                     foodLevel = RABBIT_FOOD_VALUE;
-                    return where;
+                    return location;
                 }
             }
         }

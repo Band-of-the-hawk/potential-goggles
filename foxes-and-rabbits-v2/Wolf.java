@@ -1,4 +1,5 @@
 import java.util.Iterator;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Random;
 
@@ -72,7 +73,7 @@ public class Wolf extends Actor
         if(isAlive()) {
             giveBirth(newWolves);            
             // Move towards a source of food if found.
-            Location newLocation = findFood();
+            Location newLocation = eatFood(findFood());
             if(newLocation == null) { 
                 // No food found - try to move to a free location.
                 newLocation = getField().freeAdjacentLocation(getLocation());
@@ -118,18 +119,14 @@ public class Wolf extends Actor
     private Location findFood()
     {
         Field field = getField();
-        List<Location> adjacent = field.adjacentLocations(getLocation(), 5);
+        List<Location> adjacent = field.adjacentLocationsAll(getLocation(), 15);
+        List<Location> otherActors = new LinkedList<>();
         Iterator<Location> it = adjacent.iterator();
         while(it.hasNext()) {
             Location where = it.next();
             Object actor = field.getObjectAt(where, false);
             if(actor instanceof Fox) {
-                Fox fox = (Fox) actor;
-                if(fox.isAlive()) { 
-                    fox.setDead(false);
-                    foodLevel = FOX_FOOD_VALUE;
-                    return where;
-                }
+                otherActors.add(where);
             }
             /*else if(actor instanceof Rabbit) {
                 Rabbit rabbit = (Rabbit) actor;
@@ -139,6 +136,28 @@ public class Wolf extends Actor
                     return where;
                 }
             }*/
+        }
+        return getDir(findClosest(otherActors, getLocation(), 15));
+    }
+    
+    /**
+     * 
+     * @param location
+     * @return 
+     */
+    private Location eatFood(Location location)
+    {
+        if(location != null) {
+            Field field = getField();
+            Object actor = field.getObjectAt(location, false);
+            if(actor instanceof Fox) {
+                Fox fox = (Fox) actor;
+                if(fox.isAlive()) { 
+                    fox.setDead(false);
+                    foodLevel = FOX_FOOD_VALUE;
+                    return location;
+                }
+            }
         }
         return null;
     }
