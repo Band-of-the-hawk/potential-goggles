@@ -37,18 +37,9 @@ public class Simulator
     private SimulatorView view;
     // Logger object
     private Logger log;
+    // Creator of files
+    private FileManager fileManager;
 
-
-
-    
-    /**
-     * Construct a simulation field with default size.
-     */
-    public Simulator()
-    {
-        this(DEFAULT_DEPTH, DEFAULT_WIDTH);
-        log = new Logger();
-    }
     
     /**
      * Create a simulation field with the given size.
@@ -57,6 +48,9 @@ public class Simulator
      */
     public Simulator(int depth, int width)
     {
+        log = new Logger();
+        fileManager = new FileManager();
+
         if(width <= 0 || depth <= 0) {
             System.out.println("The dimensions must be greater than zero.");
             System.out.println("Using default values.");
@@ -159,6 +153,11 @@ public class Simulator
 
     public void printList() {
         log.printAges();
+    }
+
+    public void doCreateFile() {
+        ArrayList<Integer> listOfAges = log.getListAsArrayList();
+        fileManager.createFile(listOfAges, step);
     }
     
     /**

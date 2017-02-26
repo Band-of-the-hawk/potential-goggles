@@ -6,12 +6,12 @@ import java.util.ArrayList;
 public class Logger {
 
     private ArrayList ages;
-    private ArrayList timeOfDeath;
+    private ArrayList step;
 
 
     public Logger() {
         ages = new ArrayList<>();
-        timeOfDeath = new ArrayList<>();
+        step = new ArrayList<>();
     }
 
     public void addToAges(int ageToAdd) {
@@ -24,4 +24,7 @@ public class Logger {
         }
     }
 
+    public ArrayList<Integer> getListAsArrayList() {
+        return ages;
+    }
 }

@@ -8,8 +8,9 @@ public class Main
     {
         //Simulator simulator = new Simulator(300, 350);
         Simulator simulator = new Simulator(120, 180);
-        simulator.simulate(10000);
+        simulator.simulate(100);
         simulator.printList();
+        simulator.doCreateFile();
         //simulator.simulate(36500); // for final simulation
     }
 }
