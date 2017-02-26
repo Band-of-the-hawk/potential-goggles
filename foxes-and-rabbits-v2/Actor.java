@@ -157,6 +157,45 @@ public abstract class Actor
         return null;
     }
     
+     /**
+      * 
+      * @param locations
+      * @param location
+      * @param offset
+      * @return 
+      */
+    /*protected Location findClosestV2(List<Location> locations, Location location, int offset)
+    {
+        int thisRow = location.getRow();
+        int thisCol = location.getCol();
+        for (int d = 0; d < offset; d++) {
+            for (int x = thisRow - d; x < thisRow + d + 1; x++) {
+                // Point to check: (x, ys - d) and (x, ys + d) 
+                if (CheckPoint(x, thisCol - d) == true) {
+                    return (x, ys - d);
+                }
+
+                if (CheckPoint(x, thisCol + d) == true) {
+                    return (x, ys - d);
+                }
+            }
+
+            for (int y = thisCol - d + 1; y < thisCol + d; y++) {
+                // Point to check = (xs - d, y) and (xs + d, y) 
+                if (CheckPoint(x, thisCol - d) == true) {
+                    return (thisRow - d, y);
+                }
+
+                if (CheckPoint(x, thisCol + d) == true) {
+                    return (thisRow - d, y);
+                }
+            }
+        }
+       
+        
+        return null;
+    }*/
+    
     /**
      * 
      * @param location
