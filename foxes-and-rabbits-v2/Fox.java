@@ -125,7 +125,7 @@ public class Fox extends Actor
                 otherActors.add(where);
             }
         }
-        return getDir(findClosest(otherActors, getLocation(), 5));
+        return getDir(findClosestV2(otherActors, getLocation(), 5));
     }
     
     /**

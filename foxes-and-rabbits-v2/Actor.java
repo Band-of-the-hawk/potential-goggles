@@ -111,8 +111,8 @@ public abstract class Actor
         int thisCol = location.getCol();
         for (int d = 0; d < offset; d++){
             for (int i = 0; i < d + 1; i++){
-                int x1 = thisRow - d + i;
-                int y1 = thisCol - i;
+                int x1 = thisCol - d + i;
+                int y1 = thisRow - i;
                 Location newLoc1 = new Location(x1, y1);
 
                 for(Location loc : locations) {
@@ -120,8 +120,8 @@ public abstract class Actor
                         return newLoc1;
                 }
 
-                int x2 = thisRow + d - i;
-                int y2 = thisCol + i;
+                int x2 = thisCol + d - i;
+                int y2 = thisRow + i;
                 Location newLoc2 = new Location(x2, y2);
 
                 for(Location loc : locations) {
@@ -132,8 +132,8 @@ public abstract class Actor
 
 
             for (int i = 1; i < d; i++){
-                int x1 = thisRow - i;
-                int y1 = thisCol + d - i;
+                int x1 = thisCol - i;
+                int y1 = thisRow + d - i;
                 Location newLoc1 = new Location(x1, y1);
 
                 for(Location loc : locations) {
@@ -142,8 +142,8 @@ public abstract class Actor
                 }
                 // Check point (x1, y1)
 
-                int x2 = thisRow + d - i;
-                int y2 = thisCol - i;
+                int x2 = thisCol + d - i;
+                int y2 = thisRow - i;
                 Location newLoc2 = new Location(x2, y2);
 
                 for(Location loc : locations) {
@@ -164,37 +164,45 @@ public abstract class Actor
       * @param offset
       * @return 
       */
-    /*protected Location findClosestV2(List<Location> locations, Location location, int offset)
+    protected Location findClosestV2(List<Location> locations, Location location, int offset)
     {
         int thisRow = location.getRow();
         int thisCol = location.getCol();
         for (int d = 0; d < offset; d++) {
-            for (int x = thisRow - d; x < thisRow + d + 1; x++) {
-                // Point to check: (x, ys - d) and (x, ys + d) 
-                if (CheckPoint(x, thisCol - d) == true) {
-                    return (x, ys - d);
-                }
+            for (int row = thisRow - d; row < thisRow + d + 1; row++) {
+                for (int col = thisCol - d + 1; col < thisCol + d; col++) {
+                    // Point to check: (x, thisRow - d) and (x, thisRow + d) 
+                    if (CheckPoint(locations, row, thisCol - d) == true) {
+                        return new Location(row, thisCol - d);
+                    }
 
-                if (CheckPoint(x, thisCol + d) == true) {
-                    return (x, ys - d);
-                }
-            }
+                    if (CheckPoint(locations, row, thisCol + d) == true) {
+                        return new Location(row, thisCol - d);
+                    }
+                    // Point to check = (thisCol - d, y) and (thisCol + d, y) 
+                    if (CheckPoint(locations, row, thisRow - d) == true) {
+                        return new Location(thisRow - d, col);
+                    }
 
-            for (int y = thisCol - d + 1; y < thisCol + d; y++) {
-                // Point to check = (xs - d, y) and (xs + d, y) 
-                if (CheckPoint(x, thisCol - d) == true) {
-                    return (thisRow - d, y);
-                }
-
-                if (CheckPoint(x, thisCol + d) == true) {
-                    return (thisRow - d, y);
+                    if (CheckPoint(locations, row, thisRow + d) == true) {
+                        return new Location(thisRow - d, col);
+                    }
                 }
             }
         }
-       
-        
         return null;
-    }*/
+    }
+
+    private boolean CheckPoint(List<Location> locations, int row, int col)
+    {
+                Location newLoc = new Location(row, col);
+
+                for(Location loc : locations) {
+                    if(loc.hashCode() == newLoc.hashCode())
+                        return true;
+                }
+                return false;
+    }
     
     /**
      * 
