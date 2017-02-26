@@ -8,12 +8,14 @@ public class Logger {
     private final ArrayList ages;
     private final ArrayList step;
     private final ArrayList<ArrayList<String>> deadActors;
+    private FileManager fileManager;
 
 
     public Logger() {
         ages = new ArrayList<>();
         step = new ArrayList<>();
         deadActors = new ArrayList<>();
+        fileManager = new FileManager();
     }
 
     public void addToAges(int ageToAdd) {
@@ -37,11 +39,14 @@ public class Logger {
 
     public void iterateOverList()
     {
+        String finalString = "";
         for(ArrayList<String> list1 : deadActors) {
             for(String string : list1) {
                 // Make one line for the file
+                finalString += string + ",";
             }
-            // Do the make a file thing
+            finalString += "\n";
         }
+        fileManager.createFile(finalString);
     }
 }

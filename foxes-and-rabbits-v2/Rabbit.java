@@ -68,7 +68,7 @@ public class Rabbit extends Actor
         if(isAlive()) {
             giveBirth(newRabbits);
             // Try to move into a free location.
-            Location newLocation = findFood();
+            Location newLocation = null;//findFood();
             if(newLocation == null) {
                 newLocation = getField().freeAdjacentLocation(getLocation());
             }
