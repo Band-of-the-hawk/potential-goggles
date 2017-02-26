@@ -147,8 +147,8 @@ public class Field
         Object actor;
         if(actors == null){
             actor = actors;
-            System.out.println("No actors at " + Integer.toString(row)
-                    + ", " + Integer.toString(col));
+            /*System.out.println("No actors at " + Integer.toString(row)
+                    + ", " + Integer.toString(col));*/
         } else if(isStatic) {
             actor = actors.get(0);
         } else {
