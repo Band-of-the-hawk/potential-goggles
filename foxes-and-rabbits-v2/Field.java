@@ -210,7 +210,7 @@ public class Field
         }
     }
     
-    private List<Location> findOccupiedLoc(List<Location> locations)
+    /*private List<Location> findOccupiedLoc(List<Location> locations)
     {
         List<Location> occupiedLocs = new LinkedList<>();
         
@@ -221,18 +221,58 @@ public class Field
             }
         }
         return occupiedLocs;
-    }
+    }*/
     
-    public List<Location> listClosest(Location location, int offset)
+    /*public List<Location> listClosest(Location location, int offset)
     {
-        List<Location> closest = new LinkedList<>();
+        assert location != null : "Null location passed to adjacentLocations";
+        List<Location> closest;
         int thisRow = location.getRow();
         int thisCol = location.getCol();
-        
+        closest = findOccupiedLoc(adjacentLocationsAll(location, offset));
+        for(Location loc : closest) {
+            int locR = loc.getRow();
+            int locC = loc.getCol();
+        }
         
         
         return closest;
-    }
+    }*/
+    
+    /*private List<Location> sorting(List<Location> locations, Location location, int offset)
+    {
+        int thisRow = location.getRow();
+        int thisCol = location.getCol();
+        for (int d = 0; d < offset; d++){
+            for (int i = 0; i < d + 1; i++){
+                int x1 = thisRow - d + i;
+                int y1 = thisCol - i;
+
+                // Check point (x1, y1)
+
+                int x2 = thisRow + d - i;
+                int y2 = thisCol + i;
+
+                // Check point (x2, y2)
+            }
+
+
+            for (int i = 1; i < d; i++){
+                int x1 = thisRow - i;
+                int y1 = thisCol + d - i;
+
+                // Check point (x1, y1)
+
+                int x2 = thisRow + d - i;
+                int y2 = thisCol - i;
+
+                // Check point (x2, y2)
+            }
+        }
+       
+        
+        return null;
+    }*/
 
     /**
      * Return a shuffled list of locations adjacent to the given one.
@@ -272,7 +312,7 @@ public class Field
         return locations;
     }
     
-    private List<Location> adjacentLocationsAll(Location location, int offset)
+    public List<Location> adjacentLocationsAll(Location location, int offset)
     {
         assert location != null : "Null location passed to adjacentLocations";
         // The list of locations to be returned.
