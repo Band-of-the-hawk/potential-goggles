@@ -34,4 +34,14 @@ public class Logger {
     {
         deadActors.add(newDead);
     }
+    
+    public void iterateOverList()
+    {
+        for(ArrayList<String> list1 : deadActors) {
+            for(String string : list1) {
+                // Make one line for the file
+            }
+            // Do the make a file thing
+        }
+    }
 }
