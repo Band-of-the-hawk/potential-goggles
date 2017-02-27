@@ -190,7 +190,7 @@ public abstract class Actor
         return null;
     }
     
-    protected Location findClosestV3( List<Location> locations, Location location, int offset)
+    protected Location findClosestV3(List<Location> locations, Location location, int offset)
     {
         if(locations == null || location == null || locations.size() < 1)
             return null;
