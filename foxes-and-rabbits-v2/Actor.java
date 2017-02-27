@@ -222,7 +222,7 @@ public abstract class Actor
         }
         int randIndex;
         if(indexes.size() > 0) {
-            randIndex = (Integer.parseInt(Long.toString(Math.round(Math.random())))*(indexes.size()-1));
+            randIndex = (Integer.parseInt(Long.toString(Math.round(Math.random()*(indexes.size()-1)))));
             return locations.get(indexes.get(randIndex));
         }
         return null;
