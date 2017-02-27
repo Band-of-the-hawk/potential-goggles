@@ -145,17 +145,17 @@ public class Simulator
     {
         // Gather ALL the statistics!
         ArrayList<String> list1 = new ArrayList<>();
-        String age = Integer.toString(actor.getAge()) ;
+        String age = Integer.toString(actor.getAge());
         String stepToAdd = Integer.toString(step);
         String animal = actor.getClass().toString();
-        String locationRow = Integer.toString( actor.getLocation().getRow());
-        String locationCol = Integer.toString( actor.getLocation().getCol());
+//        String locationRow = Integer.toString( actor.getLocation().getRow());
+//        String locationCol = Integer.toString( actor.getLocation().getCol());
 
-        list1.add(age);
-        list1.add(stepToAdd);
-        list1.add(animal);
-        list1.add(locationRow);
-        list1.add(locationCol);
+        list1.add("Age: " + age);
+        list1.add("Step: " + stepToAdd);
+        list1.add("Animal: " + animal);
+//        list1.add(locationRow);
+//        list1.add(locationCol);
         return list1;
     }
         
