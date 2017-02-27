@@ -3,7 +3,6 @@ import java.util.List;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.awt.Color;
-import java.util.logging.Level;
 
 /**
  * A simple predator-prey simulator, based on a rectangular field
@@ -39,7 +38,7 @@ public class Simulator
     // Logger object
     private Logger logg;
     // Creator of files
-    private FileManager fileManager;
+    //private FileManager fileManager;
 
     
     /**
@@ -50,7 +49,7 @@ public class Simulator
     public Simulator(int depth, int width)
     {
         logg = new Logger();
-        fileManager = new FileManager();
+        //fileManager = new FileManager();
 
         if(width <= 0 || depth <= 0) {
             System.out.println("The dimensions must be greater than zero.");
@@ -145,7 +144,19 @@ public class Simulator
     private ArrayList<String> gatherStats(Actor actor)
     {
         // Gather ALL the statistics!
-        return null;
+        ArrayList<String> list1 = new ArrayList<>();
+        String age = Integer.toString(actor.getAge());
+        String stepToAdd = Integer.toString(step);
+        String animal = actor.getClass().toString();
+//        String locationRow = Integer.toString( actor.getLocation().getRow());
+//        String locationCol = Integer.toString( actor.getLocation().getCol());
+
+        list1.add("Age: " + age);
+        list1.add("Step: " + stepToAdd);
+        list1.add("Animal: " + animal);
+//        list1.add(locationRow);
+//        list1.add(locationCol);
+        return list1;
     }
         
     /**
@@ -166,8 +177,10 @@ public class Simulator
     }
 
     public void doCreateFile() {
-        ArrayList<Integer> listOfAges = logg.getListAsArrayList();
-        fileManager.createFile(listOfAges, step);
+       /* ArrayList<Integer> listOfAges = logg.getListAsArrayList();
+        fileManager.createFile(listOfAges);*/
+       logg.iterateOverList();
+
     }
     
     /**

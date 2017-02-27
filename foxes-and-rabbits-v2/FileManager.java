@@ -7,7 +7,7 @@ import java.util.ArrayList;
  */
 public class FileManager {
 
-    public void createFile(ArrayList<Integer> listAges, int step) {
+    public void createFile(String listAges) {
         try{
             PrintWriter writer = new PrintWriter("the-file-name.txt", "UTF-8");
             writer.println(listAges);
