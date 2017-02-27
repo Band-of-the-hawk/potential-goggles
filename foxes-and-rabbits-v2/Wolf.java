@@ -17,7 +17,7 @@ public class Wolf extends Actor
     // The age to which a wolf can live.
     private static final int MAX_AGE = 2900;
     // The likelihood of a wolf breeding.
-    private static final double BREEDING_PROBABILITY = 0.0108;
+    private static final double BREEDING_PROBABILITY = 0.008;
     // The maximum number of births.
     private static final int MAX_LITTER_SIZE = 1;
     // The food value of a single fox. In effect, this is the
