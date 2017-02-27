@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -185,6 +186,40 @@ public abstract class Actor
                     }
                 }
             }
+        }
+        return null;
+    }
+    
+    protected Location findClosestV3( List<Location> locations, Location location, int offset)
+    {
+        if(locations == null || location == null || locations.size() < 1)
+            return null;
+        
+        double thisRow = location.getRow();
+        double thisCol = location.getCol();
+        int closestLoc;
+        ArrayList<Double> distances = new ArrayList<>();
+        ArrayList<Integer> indexes = new ArrayList<>();
+        
+        for(Location loc : locations) {
+            double dist;
+            dist = Math.sqrt((Math.pow(loc.getRow(), 2) - thisRow) + (Math.pow(loc.getCol(), 2) - thisCol));
+            distances.add(dist);
+        }
+        
+        double closest = 2000;
+        for(Double dist : distances) {
+            if(dist < closest) {
+                closest = dist;
+                indexes.add(distances.indexOf(dist));
+            } else if(dist == closest) {
+                indexes.add(distances.indexOf(dist));
+            }
+        }
+        int randIndex;
+        if(indexes.size() > 0) {
+            randIndex = (Integer.parseInt(Long.toString(Math.round(Math.random())))*(indexes.size()-1));
+            return locations.get(indexes.get(randIndex));
         }
         return null;
     }

@@ -19,7 +19,7 @@ public class Fox extends Actor
     // The age to which a fox can live.
     private static final int MAX_AGE = 1000;
     // The likelihood of a fox breeding.
-    private static final double BREEDING_PROBABILITY = 0.108;
+    private static final double BREEDING_PROBABILITY = 0.2;
     // The maximum number of births.
     private static final int MAX_LITTER_SIZE = 3;
     // The food value of a single rabbit. In effect, this is the
@@ -115,17 +115,29 @@ public class Fox extends Actor
     private Location findFood()
     {
         Field field = getField();
-        List<Location> adjacent = field.adjacentLocationsAll(getLocation(), 5);
+        List<Location> adjacent = field.adjacentLocationsAll(getLocation(), 7);
         List<Location> otherActors = new LinkedList<>();
         Iterator<Location> it = adjacent.iterator();
         while(it.hasNext()) {
             Location where = it.next();
             Object actor = field.getObjectAt(where, false);
             if(actor instanceof Rabbit) {
-                otherActors.add(where);
+                if(((Rabbit) actor).isAlive()) {
+                    otherActors.add(where);
+                }
             }
         }
-        return getDir(findClosestV2(otherActors, getLocation(), 5));
+        Location direction = null;
+        int i = 1;
+        boolean locLegal = false;
+        do {
+            i++;
+            direction = getDir(findClosestV3(otherActors, getLocation(), 7));
+            locLegal = field.isLocationLegal(direction);
+        } while(!locLegal && (i < 8));
+        if(!locLegal)
+            return null;
+        return direction;
     }
     
     /**

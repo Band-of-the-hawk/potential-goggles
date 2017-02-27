@@ -17,7 +17,7 @@ public class Wolf extends Actor
     // The age to which a wolf can live.
     private static final int MAX_AGE = 2900;
     // The likelihood of a wolf breeding.
-    private static final double BREEDING_PROBABILITY = 0.008;
+    private static final double BREEDING_PROBABILITY = 0.0108;
     // The maximum number of births.
     private static final int MAX_LITTER_SIZE = 1;
     // The food value of a single fox. In effect, this is the
@@ -126,7 +126,9 @@ public class Wolf extends Actor
             Location where = it.next();
             Object actor = field.getObjectAt(where, false);
             if(actor instanceof Fox) {
-                otherActors.add(where);
+                if(((Fox) actor).isAlive()) {
+                    otherActors.add(where);
+                }
             }
             /*else if(actor instanceof Rabbit) {
                 Rabbit rabbit = (Rabbit) actor;
@@ -137,7 +139,17 @@ public class Wolf extends Actor
                 }
             }*/
         }
-        return getDir(findClosestV2(otherActors, getLocation(), 15));
+        Location direction = null;
+        int i = 1;
+        boolean locLegal = false;
+        do {
+            i++;
+            direction = getDir(findClosestV3(otherActors, getLocation(), 15));
+            locLegal = field.isLocationLegal(direction);
+        } while(!locLegal && (i < 8));
+        if(!locLegal)
+            return null;
+        return direction;
     }
     
     /**
