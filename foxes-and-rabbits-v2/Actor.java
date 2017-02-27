@@ -201,7 +201,7 @@ public abstract class Actor
         
         double thisRow = location.getRow();
         double thisCol = location.getCol();
-        int closestLoc;
+        //int closestLoc;
         ArrayList<Double> distances = new ArrayList<>();
         ArrayList<Integer> indexes = new ArrayList<>();
         
