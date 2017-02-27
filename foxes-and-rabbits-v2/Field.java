@@ -340,6 +340,18 @@ public class Field
         }
         return locations;
     }
+    
+    public boolean isLocationLegal(Location location)
+    {
+        if(location != null) {
+            int thisRow = location.getRow();
+            int thisCol = location.getCol();
+            if((thisRow < depth) && (thisRow >= 0))
+                if((thisCol < width) && (thisCol >= 0))
+                    return true;
+        }
+        return false;
+    }
 
     /**
      * Return the depth of the field.
