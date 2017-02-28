@@ -133,11 +133,11 @@ public class Wolf extends Actor
                 if(((Fox) actor).isAlive()) {
                     otherActors.add(where);
                 }
-            } else if(actor instanceof Rabbit) {
+            } /*else if(actor instanceof Rabbit) {
                 if(((Rabbit) actor).isAlive()) {
                     otherActors.add(where);
                 }
-            }
+            }*/
         }
         Location direction = null;
         int i = 1;

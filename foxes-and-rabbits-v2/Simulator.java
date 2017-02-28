@@ -173,9 +173,9 @@ public class Simulator
         view.showStatus(step, field);
     }
 
-    public void printList() {
+    /*public void printList() {
         logg.printAges();
-    }
+    }*/
 
     public void doCreateFile() {
        /* ArrayList<Integer> listOfAges = logg.getListAsArrayList();
