@@ -133,13 +133,9 @@ public class Wolf extends Actor
                 if(((Fox) actor).isAlive()) {
                     otherActors.add(where);
                 }
-            }
-            else if(actor instanceof Rabbit) {
-                Rabbit rabbit = (Rabbit) actor;
-                if(rabbit.isAlive()) {
-                    rabbit.setDead(false);
-                    foodLevel = RABBIT_FOOD_VALUE;
-                    return where;
+            } else if(actor instanceof Rabbit) {
+                if(((Rabbit) actor).isAlive()) {
+                    otherActors.add(where);
                 }
             }
         }
@@ -171,6 +167,13 @@ public class Wolf extends Actor
                 if(fox.isAlive()) { 
                     fox.setDead(false);
                     foodLevel = FOX_FOOD_VALUE;
+                    return location;
+                }
+            } else if(actor instanceof Rabbit) {
+                Rabbit rabbit = (Rabbit) actor;
+                if(rabbit.isAlive()) {
+                    rabbit.setDead(false);
+                    foodLevel = RABBIT_FOOD_VALUE;
                     return location;
                 }
             }
