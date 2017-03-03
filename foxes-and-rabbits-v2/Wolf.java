@@ -13,19 +13,19 @@ public class Wolf extends Actor
     // Characteristics shared by all wolves (class variables).
     
     // The age at which a wolf can start to breed.
-    private static final int BREEDING_AGE = 700;
+    private static final int BREEDING_AGE = 600;
     // The age to which a wolf can live.
     private static final int MAX_AGE = 2900;
     // The likelihood of a wolf breeding.
-    private static final double BREEDING_PROBABILITY = 0.008;
+    private static final double BREEDING_PROBABILITY = 0.025;
     // The maximum number of births.
     private static final int MAX_LITTER_SIZE = 1;
     // The food value of a single fox. In effect, this is the
     // number of steps a wolf can go before it has to eat again.
-    private static final int FOX_FOOD_VALUE = 160;
+    private static final int FOX_FOOD_VALUE = 120;
     // The food value of a single rabbit. In effect, this is the
     // number of steps a wolf can go before it has to eat again.
-    private static final int RABBIT_FOOD_VALUE = 5;
+    private static final int RABBIT_FOOD_VALUE = 60;
     // Whether or not the actor 'walks'
     private static final boolean STATIC_ACTOR = false;
     // A shared random number generator to control breeding.
@@ -123,7 +123,7 @@ public class Wolf extends Actor
     private Location findFood()
     {
         Field field = getField();
-        List<Location> adjacent = field.adjacentLocationsAll(getLocation(), 15);
+        List<Location> adjacent = field.adjacentLocationsAll(getLocation(), 14);
         List<Location> otherActors = new LinkedList<>();
         Iterator<Location> it = adjacent.iterator();
         while(it.hasNext()) {
@@ -133,18 +133,18 @@ public class Wolf extends Actor
                 if(((Fox) actor).isAlive()) {
                     otherActors.add(where);
                 }
-            } /*else if(actor instanceof Rabbit) {
+            } else if(actor instanceof Rabbit) {
                 if(((Rabbit) actor).isAlive()) {
                     otherActors.add(where);
                 }
-            }*/
+            }
         }
         Location direction = null;
         int i = 1;
         boolean locLegal = false;
         do {
             i++;
-            direction = getDir(findClosestV3(otherActors, getLocation(), 15));
+            direction = getDir(findClosestV3(otherActors, getLocation(), 14));
             locLegal = field.isLocationLegal(direction);
         } while(!locLegal && (i < 8));
         if(!locLegal)
