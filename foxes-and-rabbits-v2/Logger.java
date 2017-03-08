@@ -16,6 +16,7 @@ public class Logger extends FileManager{
     private BufferedWriter writeFFSRabbit;
     private BufferedWriter writeFFSFox;
     private BufferedWriter writeFFSWolf;
+    private BufferedWriter writeFFSPopulation;
     private final ArrayList<String> population;
 
 
@@ -30,6 +31,7 @@ public class Logger extends FileManager{
             writeFFSRabbit = new BufferedWriter(new FileWriter("rabbit-log-file.csv", false));
             writeFFSFox = new BufferedWriter(new FileWriter("fox-log-file.csv", false));
             writeFFSWolf = new BufferedWriter(new FileWriter("wolf-log-file.csv", false));
+            writeFFSPopulation = new BufferedWriter(new FileWriter("population-log-file.csv", false));
         } catch (IOException io) {
             System.out.println(io.getMessage());
         }
@@ -129,11 +131,15 @@ public class Logger extends FileManager{
     public void iterateOverPopulation()
     {
         String finalString = "";
-        for(String string : this.population) {
-            // Make one line for the file
-            finalString += string;
-            finalString += "\n";
+        try {
+            for (String string : this.population) {
+                // Make one line for the file
+                writeFFSPopulation.write(string + "\n");
+
+            }
+            writeFFSPopulation.close();
+        } catch (IOException io) {
+            System.out.println(io.getMessage());
         }
-        fileManager.writeToPopulation(finalString);
     }
 }
