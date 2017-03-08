@@ -15,7 +15,7 @@ public class Fox extends Actor
     // Characteristics shared by all foxes (class variables).
     
     // The age at which a fox can start to breed.
-    private static final int BREEDING_AGE = 240;
+    private static final int BREEDING_AGE = 310;
     // The age to which a fox can live.
     private static final int MAX_AGE = 1090;
     // The likelihood of a fox breeding.

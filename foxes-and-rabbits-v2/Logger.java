@@ -71,7 +71,7 @@ public class Logger extends FileManager{
                     finalString += ",";
                 }*/
 
-                writeFFSRabbit.write(string+"\n");
+                writeFFSRabbit.write(string + "\n");
 
             }
             writeFFSRabbit.close();
@@ -85,11 +85,12 @@ public class Logger extends FileManager{
     public void iterateOverFoxList()
     {
         String finalString = "";
+        System.out.println("Iterate over Fox list");
         //for(ArrayList<String> list1 : deadFoxes) {
         try {
             for(String string : deadFoxes) {
             // Make one line for the file
-            writeFFSFox.write(string+"\n");
+            writeFFSFox.write(string + "\n");
             }
             writeFFSFox.close();
                 //finalString += string;
@@ -109,6 +110,7 @@ public class Logger extends FileManager{
     public void iterateOverWolfList()
     {
         String finalString = "";
+        System.out.println("Iterate over Wolf list");
         try {
             //for(ArrayList<String> list1 : deadWolves) {
             for (String string : deadWolves) {
@@ -118,7 +120,7 @@ public class Logger extends FileManager{
                 /*if(list1.indexOf(string) < (list1.size() - 1)) {
                     finalString += ",";
                 }*/
-                writeFFSWolf.write(string+"\n");
+                writeFFSWolf.write(string + "\n");
             }
             writeFFSWolf.close();
         } catch (IOException io) {
@@ -131,6 +133,7 @@ public class Logger extends FileManager{
     public void iterateOverPopulation()
     {
         String finalString = "";
+        System.out.println("Iterate over population list");
         try {
             for (String string : this.population) {
                 // Make one line for the file

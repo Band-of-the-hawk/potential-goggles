@@ -13,11 +13,11 @@ public class Wolf extends Actor
     // Characteristics shared by all wolves (class variables).
     
     // The age at which a wolf can start to breed.
-    private static final int BREEDING_AGE = 365;
+    private static final int BREEDING_AGE = 750;
     // The age to which a wolf can live.
     private static final int MAX_AGE = 2922;
     // The likelihood of a wolf breeding.
-    private static final double BREEDING_PROBABILITY = 0.015;
+    private static final double BREEDING_PROBABILITY = 0.017;
     // The maximum number of births.
     private static final int MAX_LITTER_SIZE = 4;
     // The food value of a single fox. In effect, this is the
@@ -133,11 +133,11 @@ public class Wolf extends Actor
                 if(((Fox) actor).isAlive()) {
                     otherActors.add(where);
                 }
-            } else if(actor instanceof Rabbit) {
+            } /*else if(actor instanceof Rabbit) {
                 if(((Rabbit) actor).isAlive()) {
                     otherActors.add(where);
                 }
-            }
+            }*/
         }
         Location direction = null;
         int i = 1;
