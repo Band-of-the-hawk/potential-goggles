@@ -11,6 +11,6 @@ public class Main
         //simulator.simulate(1000);
         //simulator.printList();
         //simulator.doCreateFile();
-        simulator.simulate(36500); // for final simulation
+        simulator.simulate(1000); // for final simulation
     }
 }
