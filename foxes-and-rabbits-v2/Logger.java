@@ -5,22 +5,20 @@ import java.util.ArrayList;
  */
 public class Logger {
 
-    //private final ArrayList ages;
-    //private final ArrayList step;
     private final ArrayList<String> deadActors;
     private final ArrayList<String> deadRabbits;
     private final ArrayList<String> deadFoxes;
     private final ArrayList<String> deadWolves;
-    private FileManager fileManager;
+    private final ArrayList<String> population;
+    private final FileManager fileManager;
 
 
     public Logger() {
-        //ages = new ArrayList<>();
-        //step = new ArrayList<>();
         deadActors = new ArrayList<>();
         deadRabbits = new ArrayList<>();
         deadFoxes = new ArrayList<>();
         deadWolves = new ArrayList<>();
+        population = new ArrayList<>();
         fileManager = new FileManager();
     }
    
@@ -37,52 +35,53 @@ public class Logger {
             deadWolves.add(newDead);
         }
     }
+    
+    public void populationSize(String population)
+    {
+        this.population.add(population);
+    }
 
     public void iterateOverRabbitList()
     {
         String finalString = "";
-        //for(ArrayList<String> list1 : deadRabbits) {
-            for(String string : deadRabbits) {
-                // Make one line for the file
-                finalString += string;
-                finalString += "\n";
-                /*if(list1.indexOf(string) < (list1.size() - 1)) {
-                    finalString += ",";
-                }*/
-            }
-        //}
+        for(String string : deadRabbits) {
+            // Make one line for the file
+            finalString += string;
+            finalString += "\n";
+        }
         fileManager.writeToRabbit(finalString);
     }
 
     public void iterateOverFoxList()
     {
         String finalString = "";
-        //for(ArrayList<String> list1 : deadFoxes) {
-            for(String string : deadFoxes) {
-                // Make one line for the file
-                finalString += string;
-                finalString += "\n";
-                /*if(list1.indexOf(string) < (list1.size() - 1)) {
-                    finalString += ",";
-                }*/
-            }
-        //}
+        for(String string : deadFoxes) {
+            // Make one line for the file
+            finalString += string;
+            finalString += "\n";
+        }
         fileManager.writeToFox(finalString);
     }
 
     public void iterateOverWolfList()
     {
         String finalString = "";
-        //for(ArrayList<String> list1 : deadWolves) {
-            for(String string : deadWolves) {
-                // Make one line for the file
-                finalString += string;
-                finalString += "\n";
-                /*if(list1.indexOf(string) < (list1.size() - 1)) {
-                    finalString += ",";
-                }*/
-            }
-        //}
+        for(String string : deadWolves) {
+            // Make one line for the file
+            finalString += string;
+            finalString += "\n";
+        }
         fileManager.writeToWolf(finalString);
+    }
+
+    public void iterateOverPopulation()
+    {
+        String finalString = "";
+        for(String string : this.population) {
+            // Make one line for the file
+            finalString += string;
+            finalString += "\n";
+        }
+        fileManager.writeToPopulation(finalString);
     }
 }

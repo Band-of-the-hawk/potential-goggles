@@ -92,6 +92,7 @@ public class Simulator
         int stepBefore = 1;
         for(int step = 1; step <= numSteps && view.isViable(field); step++) {
             simulateOneStep();
+            logg.populationSize(gatherStatsPopulation());
             /*if ((step - stepBefore) >= 500) {
                 stepBefore = step;
                 doCreateFile();
@@ -116,7 +117,7 @@ public class Simulator
             Actor actor = it.next();
             actor.act(newActors);
             if(! actor.isAlive()) {
-                String stats = gatherStats(actor);
+                String stats = gatherStatsActors(actor);
                 
                 logg.newDeadActor(stats);
                 //log.addToAges(actor.getAge());
@@ -126,43 +127,47 @@ public class Simulator
                
         // Add the newly born foxes and rabbits to the main lists.
         animals.addAll(newActors);
-        /*int numGrassTot = 0;
-        int numGrassAli = 0;
-        int numGrassEdi = 0;
-        for(Actor actor : animals) {
-            if(actor instanceof Grass) {
-                Grass grass = (Grass) actor;
-                if(grass.isAlive()) {
-                    numGrassAli++;
-                }
-                if(grass.isEdible()) {
-                    numGrassEdi++;
-                }
-                numGrassTot++;
-            }
-        }
-        System.out.println("Number of grass: " + Integer.toString(numGrassTot)
-                + " Grass alive: " + Integer.toString(numGrassAli)
-                + " Grass edible: " + Integer.toString(numGrassEdi));*/
+        
         view.showStatus(step, field);
     }
     
-    private String gatherStats(Actor actor)
+    private String gatherStatsActors(Actor actor)
     {
         // Gather ALL the statistics!
         String oneLine = "";
         String age = Integer.toString(actor.getAge());
         String stepToAdd = Integer.toString(step);
         String animal = actor.getClass().toString();
-//        String locationRow = Integer.toString( actor.getLocation().getRow());
-//        String locationCol = Integer.toString( actor.getLocation().getCol());
 
         oneLine += age;
         oneLine += ("," + stepToAdd);
         oneLine += ("," + animal);
-//        list1.add(locationRow);
-//        list1.add(locationCol);
         return oneLine;
+    }
+    
+    private String gatherStatsPopulation()
+    {
+        int rabbitNum = 0;
+        int foxNum = 0;
+        int wolfNum = 0;
+        
+        for(Actor actor : animals) {
+            if(actor.getClass().getName().equalsIgnoreCase("rabbit")) {
+                rabbitNum++;
+            }
+            if(actor.getClass().getName().equalsIgnoreCase("fox")) {
+                foxNum++;
+            }
+            if(actor.getClass().getName().equalsIgnoreCase("wolf")) {
+                wolfNum++;
+            }
+        }
+        String returnString = "";
+        
+        returnString += Integer.toString(rabbitNum);
+        returnString += "," + Integer.toString(foxNum);
+        returnString += "," + Integer.toString(wolfNum);
+        return returnString;
     }
         
     /**
@@ -183,12 +188,10 @@ public class Simulator
     }*/
 
     public void doCreateFile() {
-       /* ArrayList<Integer> listOfAges = logg.getListAsArrayList();
-        fileManager.createFile(listOfAges);*/
-       //logg.iterateOverActorList();
        logg.iterateOverRabbitList();
        logg.iterateOverFoxList();
        logg.iterateOverWolfList();
+       logg.iterateOverPopulation();
 
     }
     

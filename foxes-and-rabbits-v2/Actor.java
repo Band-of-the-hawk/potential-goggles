@@ -106,7 +106,7 @@ public abstract class Actor
      * @param offset
      * @return 
      */
-    protected Location findClosest(List<Location> locations, Location location, int offset)
+    /*protected Location findClosest(List<Location> locations, Location location, int offset)
     {
         int thisRow = location.getRow();
         int thisCol = location.getCol();
@@ -154,7 +154,7 @@ public abstract class Actor
             }
         }
         return null;
-    }
+    }*/
     
      /**
       * 
@@ -163,7 +163,7 @@ public abstract class Actor
       * @param offset
       * @return 
       */
-    protected Location findClosestV2(List<Location> locations, Location location, int offset)
+    /*protected Location findClosestV2(List<Location> locations, Location location, int offset)
     {
         int thisRow = location.getRow();
         int thisCol = location.getCol();
@@ -190,7 +190,7 @@ public abstract class Actor
             }
         }
         return null;
-    }
+    }*/
     
     protected Location findClosestV3(List<Location> locations, Location location, int offset)
     {
@@ -199,7 +199,6 @@ public abstract class Actor
         
         double thisRow = location.getRow();
         double thisCol = location.getCol();
-        //int closestLoc;
         ArrayList<Double> distances = new ArrayList<>();
         ArrayList<Integer> indexes = new ArrayList<>();
         
@@ -226,7 +225,7 @@ public abstract class Actor
         return null;
     }
 
-    private boolean CheckPoint(List<Location> locations, int row, int col)
+    /*private boolean CheckPoint(List<Location> locations, int row, int col)
     {
                 Location newLoc = new Location(row, col);
 
@@ -235,7 +234,7 @@ public abstract class Actor
                         return true;
                 }
                 return false;
-    }
+    }*/
     
     /**
      * 
