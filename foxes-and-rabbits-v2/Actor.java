@@ -208,7 +208,7 @@ public abstract class Actor
             distances.add(dist);
         }
         
-        double closest = 2000;
+        double closest = 36500;
         for(Double dist : distances) {
             if(dist < closest) {
                 closest = dist;
