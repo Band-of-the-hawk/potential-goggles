@@ -17,9 +17,9 @@ public class Wolf extends Actor
     // The age to which a wolf can live.
     private static final int MAX_AGE = 2922;
     // The likelihood of a wolf breeding.
-    private static final double BREEDING_PROBABILITY = 0.012;
+    private static final double BREEDING_PROBABILITY = 0.02;
     // The maximum number of births.
-    private static final int MAX_LITTER_SIZE = 2;
+    private static final int MAX_LITTER_SIZE = 3;
     // The food value of a single fox. In effect, this is the
     // number of steps a wolf can go before it has to eat again.
     private static final int FOX_FOOD_VALUE = 120;
@@ -123,7 +123,7 @@ public class Wolf extends Actor
     private Location findFood()
     {
         Field field = getField();
-        List<Location> adjacent = field.adjacentLocationsAll(getLocation(), 14);
+        List<Location> adjacent = field.adjacentLocationsAll(getLocation(), 10);
         List<Location> otherActors = new LinkedList<>();
         Iterator<Location> it = adjacent.iterator();
         while(it.hasNext()) {
@@ -144,7 +144,7 @@ public class Wolf extends Actor
         boolean locLegal = false;
         do {
             i++;
-            direction = getDir(findClosestV3(otherActors, getLocation(), 14));
+            direction = getDir(findClosestV3(otherActors, getLocation(), 10));
             locLegal = field.isLocationLegal(direction);
         } while(!locLegal && (i < 8));
         if(!locLegal)
