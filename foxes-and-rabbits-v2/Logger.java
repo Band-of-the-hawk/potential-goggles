@@ -1,9 +1,12 @@
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 
 /**
  * Created by KristofferMartinsen, ThomasSTodal and VinhKTran on 2/26/2017.
  */
-public class Logger {
+public class Logger extends FileManager{
 
     //private final ArrayList ages;
     //private final ArrayList step;
@@ -12,6 +15,9 @@ public class Logger {
     private final ArrayList<String> deadFoxes;
     private final ArrayList<String> deadWolves;
     private FileManager fileManager;
+    private BufferedWriter writeFFSRabbit;
+    private BufferedWriter writeFFSFox;
+    private BufferedWriter writeFFSWolf;
 
 
     public Logger() {
@@ -21,7 +27,15 @@ public class Logger {
         deadRabbits = new ArrayList<>();
         deadFoxes = new ArrayList<>();
         deadWolves = new ArrayList<>();
-        fileManager = new FileManager();
+        //fileManager = new FileManager();
+        try {
+            writeFFSRabbit = new BufferedWriter(new FileWriter("rabbit-log-file.csv", false));
+            writeFFSFox = new BufferedWriter(new FileWriter("fox-log-file.csv", false));
+            writeFFSWolf = new BufferedWriter(new FileWriter("wolf-log-file.csv", false));
+        } catch (IOException io) {
+            System.out.println(io.getMessage());
+        }
+
     }
    
     public void newDeadActor(String newDead)
@@ -41,48 +55,71 @@ public class Logger {
     public void iterateOverRabbitList()
     {
         String finalString = "";
+        System.out.println("Iterate over rabbit list");
         //for(ArrayList<String> list1 : deadRabbits) {
-            for(String string : deadRabbits) {
+        try {
+            for (String string : deadRabbits) {
                 // Make one line for the file
-                finalString += string;
-                finalString += "\n";
+                //finalString += string;
+                //finalString += "\n";
                 /*if(list1.indexOf(string) < (list1.size() - 1)) {
                     finalString += ",";
                 }*/
+
+                writeFFSRabbit.write(string+"\n");
+
             }
+            writeFFSRabbit.close();
+        } catch (IOException io) {
+            System.out.println(io.getMessage());
+        }
         //}
-        fileManager.writeToRabbit(finalString);
+        //fileManager.writeToRabbit(finalString);
     }
 
     public void iterateOverFoxList()
     {
         String finalString = "";
         //for(ArrayList<String> list1 : deadFoxes) {
+        try {
             for(String string : deadFoxes) {
-                // Make one line for the file
-                finalString += string;
-                finalString += "\n";
+            // Make one line for the file
+            writeFFSFox.write(string+"\n");
+            }
+            writeFFSFox.close();
+                //finalString += string;
+                //finalString += "\n";
+
+
                 /*if(list1.indexOf(string) < (list1.size() - 1)) {
                     finalString += ",";
                 }*/
+            } catch (IOException io) {
+                System.out.println(io.getMessage());
             }
         //}
-        fileManager.writeToFox(finalString);
+        //fileManager.writeToFox(finalString);
     }
 
     public void iterateOverWolfList()
     {
         String finalString = "";
-        //for(ArrayList<String> list1 : deadWolves) {
-            for(String string : deadWolves) {
+        try {
+            //for(ArrayList<String> list1 : deadWolves) {
+            for (String string : deadWolves) {
                 // Make one line for the file
-                finalString += string;
-                finalString += "\n";
+                //finalString += string;
+                //finalString += "\n";
                 /*if(list1.indexOf(string) < (list1.size() - 1)) {
                     finalString += ",";
                 }*/
+                writeFFSWolf.write(string+"\n");
             }
+            writeFFSWolf.close();
+        } catch (IOException io) {
+            System.out.println(io.getMessage());
+        }
         //}
-        fileManager.writeToWolf(finalString);
+        //fileManager.writeToWolf(finalString);
     }
 }

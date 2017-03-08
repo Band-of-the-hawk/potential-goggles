@@ -12,13 +12,13 @@ public class FileManager {
     
     FileManager()
     {
-        try {
+        /*try {
             rabbitWriter = new BufferedWriter( new FileWriter("rabbit-log-file.csv", false));
             foxWriter = new BufferedWriter( new FileWriter("fox-log-file.csv", false));
             wolfWriter = new BufferedWriter( new FileWriter("wolf-log.file.csv", false));
         } catch (IOException ex) {
             System.out.println("An error occurred when creating a new file :'(");
-        }
+        }*/
     }
 
     public void writeToRabbit(String rabbitText)
