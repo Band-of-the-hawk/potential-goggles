@@ -8,8 +8,6 @@ import java.util.ArrayList;
  */
 public class Logger extends FileManager{
 
-    //private final ArrayList ages;
-    //private final ArrayList step;
     private final ArrayList<String> deadActors;
     private final ArrayList<String> deadRabbits;
     private final ArrayList<String> deadFoxes;
@@ -18,16 +16,16 @@ public class Logger extends FileManager{
     private BufferedWriter writeFFSRabbit;
     private BufferedWriter writeFFSFox;
     private BufferedWriter writeFFSWolf;
+    private final ArrayList<String> population;
 
 
     public Logger() {
-        //ages = new ArrayList<>();
-        //step = new ArrayList<>();
         deadActors = new ArrayList<>();
         deadRabbits = new ArrayList<>();
         deadFoxes = new ArrayList<>();
         deadWolves = new ArrayList<>();
         //fileManager = new FileManager();
+        population = new ArrayList<>();
         try {
             writeFFSRabbit = new BufferedWriter(new FileWriter("rabbit-log-file.csv", false));
             writeFFSFox = new BufferedWriter(new FileWriter("fox-log-file.csv", false));
@@ -50,6 +48,11 @@ public class Logger extends FileManager{
         if(newDead.toLowerCase().contains("wolf")) {
             deadWolves.add(newDead);
         }
+    }
+    
+    public void populationSize(String population)
+    {
+        this.population.add(population);
     }
 
     public void iterateOverRabbitList()
@@ -121,5 +124,16 @@ public class Logger extends FileManager{
         }
         //}
         //fileManager.writeToWolf(finalString);
+    }
+
+    public void iterateOverPopulation()
+    {
+        String finalString = "";
+        for(String string : this.population) {
+            // Make one line for the file
+            finalString += string;
+            finalString += "\n";
+        }
+        fileManager.writeToPopulation(finalString);
     }
 }
