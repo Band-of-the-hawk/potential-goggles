@@ -116,7 +116,7 @@ public class Simulator
             Actor actor = it.next();
             actor.act(newActors);
             if(! actor.isAlive()) {
-                ArrayList<String> stats = gatherStats(actor);
+                String stats = gatherStats(actor);
                 
                 logg.newDeadActor(stats);
                 //log.addToAges(actor.getAge());
@@ -147,22 +147,22 @@ public class Simulator
         view.showStatus(step, field);
     }
     
-    private ArrayList<String> gatherStats(Actor actor)
+    private String gatherStats(Actor actor)
     {
         // Gather ALL the statistics!
-        ArrayList<String> list1 = new ArrayList<>();
+        String oneLine = "";
         String age = Integer.toString(actor.getAge());
         String stepToAdd = Integer.toString(step);
         String animal = actor.getClass().toString();
 //        String locationRow = Integer.toString( actor.getLocation().getRow());
 //        String locationCol = Integer.toString( actor.getLocation().getCol());
 
-        list1.add(age);
-        list1.add("," + stepToAdd);
-        list1.add("," + animal);
+        oneLine += age;
+        oneLine += ("," + stepToAdd);
+        oneLine += ("," + animal);
 //        list1.add(locationRow);
 //        list1.add(locationCol);
-        return list1;
+        return oneLine;
     }
         
     /**
