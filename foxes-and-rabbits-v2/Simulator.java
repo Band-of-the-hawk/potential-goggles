@@ -89,8 +89,13 @@ public class Simulator
      */
     public void simulate(int numSteps)
     {
+        int stepBefore = 1;
         for(int step = 1; step <= numSteps && view.isViable(field); step++) {
             simulateOneStep();
+            /*if ((step - stepBefore) >= 500) {
+                stepBefore = step;
+                doCreateFile();
+            }*/
         }
         doCreateFile();
     }
@@ -153,8 +158,8 @@ public class Simulator
 //        String locationCol = Integer.toString( actor.getLocation().getCol());
 
         list1.add(age);
-        list1.add(stepToAdd);
-        list1.add(animal);
+        list1.add("," + stepToAdd);
+        list1.add("," + animal);
 //        list1.add(locationRow);
 //        list1.add(locationCol);
         return list1;
@@ -180,7 +185,10 @@ public class Simulator
     public void doCreateFile() {
        /* ArrayList<Integer> listOfAges = logg.getListAsArrayList();
         fileManager.createFile(listOfAges);*/
-       logg.iterateOverList();
+       //logg.iterateOverActorList();
+       logg.iterateOverRabbitList();
+       logg.iterateOverFoxList();
+       logg.iterateOverWolfList();
 
     }
     

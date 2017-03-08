@@ -13,13 +13,13 @@ public class Wolf extends Actor
     // Characteristics shared by all wolves (class variables).
     
     // The age at which a wolf can start to breed.
-    private static final int BREEDING_AGE = 600;
+    private static final int BREEDING_AGE = 365;
     // The age to which a wolf can live.
-    private static final int MAX_AGE = 2900;
+    private static final int MAX_AGE = 2922;
     // The likelihood of a wolf breeding.
-    private static final double BREEDING_PROBABILITY = 0.025;
+    private static final double BREEDING_PROBABILITY = 0.012;
     // The maximum number of births.
-    private static final int MAX_LITTER_SIZE = 1;
+    private static final int MAX_LITTER_SIZE = 2;
     // The food value of a single fox. In effect, this is the
     // number of steps a wolf can go before it has to eat again.
     private static final int FOX_FOOD_VALUE = 120;
