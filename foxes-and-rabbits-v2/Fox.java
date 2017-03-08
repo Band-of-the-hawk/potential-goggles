@@ -15,16 +15,16 @@ public class Fox extends Actor
     // Characteristics shared by all foxes (class variables).
     
     // The age at which a fox can start to breed.
-    private static final int BREEDING_AGE = 300;
+    private static final int BREEDING_AGE = 250;
     // The age to which a fox can live.
     private static final int MAX_AGE = 1000;
     // The likelihood of a fox breeding.
-    private static final double BREEDING_PROBABILITY = 0.2;
+    private static final double BREEDING_PROBABILITY = 0.025;
     // The maximum number of births.
     private static final int MAX_LITTER_SIZE = 3;
     // The food value of a single rabbit. In effect, this is the
     // number of steps a fox can go before it has to eat again.
-    private static final int RABBIT_FOOD_VALUE = 12;
+    private static final int RABBIT_FOOD_VALUE = 60;
     // A shared random number generator to control breeding.
     private static final Random rand = Randomizer.getRandom();
     
@@ -121,7 +121,7 @@ public class Fox extends Actor
         while(it.hasNext()) {
             Location where = it.next();
             Object actor = field.getObjectAt(where, false);
-            if(actor instanceof Rabbit) {
+            if(actor instanceof Rabbit) { 
                 if(((Rabbit) actor).isAlive()) {
                     otherActors.add(where);
                 }

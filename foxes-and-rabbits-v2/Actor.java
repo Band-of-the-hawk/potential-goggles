@@ -199,7 +199,7 @@ public abstract class Actor
         
         double thisRow = location.getRow();
         double thisCol = location.getCol();
-        int closestLoc;
+        //int closestLoc;
         ArrayList<Double> distances = new ArrayList<>();
         ArrayList<Integer> indexes = new ArrayList<>();
         
@@ -276,8 +276,10 @@ public abstract class Actor
             newRow = thisRow - 1;
             newCol = thisCol - 1;
         }
-        if((newRow != thisRow) && (newCol != thisCol)) {
-            return new Location(newRow, newCol);
+        //if((newRow != thisRow) && (newCol != thisCol)) {
+        Location newLoc = new Location(newRow, newCol);
+        if(!newLoc.equals(location)) {
+            return newLoc; //new Location(newRow, newCol);
         }
         return null;
     }
