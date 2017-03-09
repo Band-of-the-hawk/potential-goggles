@@ -22,12 +22,14 @@ public class Wolf extends Actor
     private static final int MAX_LITTER_SIZE = 4;
     // The food value of a single fox. In effect, this is the
     // number of steps a wolf can go before it has to eat again.
-    private static final int FOX_FOOD_VALUE = 120;
+    private static final int FOX_FOOD_VALUE = 100;
     // The food value of a single rabbit. In effect, this is the
     // number of steps a wolf can go before it has to eat again.
-    private static final int RABBIT_FOOD_VALUE = 60;
+    private static final int RABBIT_FOOD_VALUE = 50;
     // Whether or not the actor 'walks'
     private static final boolean STATIC_ACTOR = false;
+    
+    private static final int MAX_FOOD_VALUE = 300;
     // A shared random number generator to control breeding.
     private static final Random rand = Randomizer.getRandom();
     
@@ -166,17 +168,25 @@ public class Wolf extends Actor
                 Fox fox = (Fox) actor;
                 if(fox.isAlive()) { 
                     fox.setDead(false);
-                    foodLevel = FOX_FOOD_VALUE;
+                    foodLevel += FOX_FOOD_VALUE;
+                    if(foodLevel > MAX_FOOD_VALUE)
+                    {
+                        foodLevel = MAX_FOOD_VALUE;
+                    }
                     return location;
                 }
-            } else if(actor instanceof Rabbit) {
+            } /*else if(actor instanceof Rabbit) {
                 Rabbit rabbit = (Rabbit) actor;
                 if(rabbit.isAlive()) {
                     rabbit.setDead(false);
-                    foodLevel = RABBIT_FOOD_VALUE;
+                    foodLevel += RABBIT_FOOD_VALUE;
+                    if(foodLevel > MAX_FOOD_VALUE)
+                    {
+                        foodLevel = MAX_FOOD_VALUE;
+                    }
                     return location;
                 }
-            }
+            }*/
         }
         return null;
     }
